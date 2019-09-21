@@ -21,6 +21,9 @@ public class GreetingController {
 
     @Autowired
     private Greeting greeting;
+    @Autowired
+    private UserRepository repository;
+
     private final AtomicLong counter = new AtomicLong();
     private List<String> tasks = Arrays.asList("a","b","c","d","e","f","g");
 
@@ -36,6 +39,13 @@ public class GreetingController {
         model.addAttribute("greetingElem",greeting.getContent());
 
         return "welcome";
+    }
+
+    @GetMapping("/add")
+    public String add()
+    {
+            repository.save(new User("Kochaniasta","anna.kochaniasta@gmail.com"));
+            return "welcome";
     }
 //
 //    @GetMapping("/hello")
