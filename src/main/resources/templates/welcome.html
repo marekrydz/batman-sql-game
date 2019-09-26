@@ -18,18 +18,33 @@
 </nav>
 <!--greetingElem-->
 <main role="main" class="container">
-    <p> th:text="'Hello, ' + ${message}"</p>
     <div class="starter-template">
-        <h1>Spring Boot Web Thymeleaf Example</h1>
+        <!--        <h1>SQL training game made by MarcoRy on Spring and Thymeleaf</h1>-->
         <h2>
             <span th:text="'Hello, ' + ${greetingElem}"></span>
         </h2>
     </div>
+    <form method="get">
+        <input type="text" name="sqlQuery">
+        <input type="submit" value="Write SQL query">
+    </form>
+    <table border="1">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email address</th>
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </th:block>
+    </table>
+    <table border="2">
+        <th th:each="columnTitle: ${answers}" th:text="${columnTitle}"></th>
 
-    <ol>
-        <li th:each="task : ${tasks}" th:text="${task}"></li>
-    </ol>
-
+    </table>
+    </div>
 </main>
 <!-- /.container -->
 
