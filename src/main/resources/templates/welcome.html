@@ -6,8 +6,8 @@
 
     <title>Spring Boot Thymeleaf Hello World Example</title>
 
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+        <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
 </head>
 
@@ -16,37 +16,31 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Mkyong.com</a>
 </nav>
-<!--greetingElem-->
 <main role="main" class="container">
     <div class="starter-template">
-        <!--        <h1>SQL training game made by MarcoRy on Spring and Thymeleaf</h1>-->
+                <h1>SQL training game made by MarcoRy on Spring and Thymeleaf</h1>
         <h2>
             <span th:text="'Hello, ' + ${greetingElem}"></span>
         </h2>
     </div>
-    <form method="get">
+    <form th:action="@{/}" method="post">
         <input type="text" name="sqlQuery">
         <input type="submit" value="Write SQL query">
     </form>
-    <table border="1">
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email address</th>
-        <th:block th:each="user : ${users}">
-            <tr>
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
+    <table border="2">
+        <thead>
+        <th>name</th>
+        <th>email</th>
+        </thead>
+        <th:block>
+            <tr th:each="user: ${users}">
+                <td th:text=" ${user.name}"></td>
+                <td th:text=" ${user.email}"></td>
             </tr>
         </th:block>
     </table>
-    <table border="2">
-        <th th:each="columnTitle: ${answers}" th:text="${columnTitle}"></th>
-
-    </table>
     </div>
 </main>
-<!-- /.container -->
 
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
 </body>
