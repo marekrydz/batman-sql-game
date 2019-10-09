@@ -10,8 +10,7 @@ import java.util.*;
 @Controller
 public class UserController {
 
-    @Resource
-    private UserRepository repository;
+
 
     @Resource
     UserService userService;
@@ -34,7 +33,7 @@ public class UserController {
 
         model.addAttribute("message", message);
         model.addAttribute("tasks", tasks);
-        model.addAttribute("users", repository.findAll());
+
         model.addAttribute("users", users);
 
         return "welcome";
@@ -42,13 +41,12 @@ public class UserController {
 
     @GetMapping("/add")
     public String add() {
-        repository.save(new User("Anna", "anna@gmail.com"));
+
         return "welcome";
     }
 
     @GetMapping("/showAll")
     public String showAll() {
-        System.out.println(repository.findAll());
         return "welcome";
     }
 }

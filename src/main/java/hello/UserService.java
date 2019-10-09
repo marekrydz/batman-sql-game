@@ -11,6 +11,8 @@ import java.util.Objects;
 
 @Service
 public class UserService {
+    Creator creator = new Creator();
+
     List getResultFromDBToList(String sqlQuery) {
         int numberOfRowsFromDB = 0;
         List<User> users = new ArrayList<>();
@@ -46,16 +48,7 @@ public class UserService {
 
             //Created user object from lists and add to users list
             for (int i = 0; i < numberOfRowsFromDB; i++) {
-                User user = new User();
-                if (names.isEmpty()) {
-                    user.setEmail(emails.get(i));
-                } else if (emails.isEmpty()) {
-                    user.setName(names.get(i));
-                } else {
-                    user.setEmail(emails.get(i));
-                    user.setName(names.get(i));
-                }
-                users.add(user);
+                users.add(creator.createUserObjectFromList(i, names, emails));
             }
             conn.close();
         } catch (SQLException e) {
