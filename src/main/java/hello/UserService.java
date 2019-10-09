@@ -12,7 +12,7 @@ import java.util.Objects;
 @Service
 public class UserService {
     List getResultFromDBToList(String sqlQuery) {
-
+        int numberOfRowsFromDB = 0;
         List<User> users = new ArrayList<>();
         String url = "jdbc:postgresql://localhost:5432/postgres";
         ResultSet rs;
@@ -25,7 +25,7 @@ public class UserService {
 
         try {
             Multimap<String, String> multiMap = ArrayListMultimap.create();
-            Statement stmt = Objects.requireNonNull(conn,"Connection  is null").createStatement();
+            Statement stmt = Objects.requireNonNull(conn, "Connection  is null").createStatement();
             rs = stmt.executeQuery(sqlQuery);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
@@ -34,6 +34,7 @@ public class UserService {
                 columnNamesList.add(resultSetMetaData.getColumnName(i));
             }
             while (rs.next()) {
+                numberOfRowsFromDB++;
                 for (String columnName : columnNamesList) {
                     multiMap.put(columnName, rs.getString(columnName));
                 }
@@ -42,13 +43,23 @@ public class UserService {
             List<String> names = new ArrayList<>(multiMap.get("name"));
             List<String> emails = new ArrayList<>(multiMap.get("email"));
 
+
             //Created user object from lists and add to users list
-            for (int i = 0; i < names.size(); i++) {
-                User user = new User(names.get(i), emails.get(i));
+            for (int i = 0; i < numberOfRowsFromDB; i++) {
+                User user = new User();
+                if (names.isEmpty()) {
+                    user.setEmail(emails.get(i));
+                } else if (emails.isEmpty()) {
+                    user.setName(names.get(i));
+                } else {
+                    user.setEmail(emails.get(i));
+                    user.setName(names.get(i));
+                }
                 users.add(user);
             }
             conn.close();
         } catch (SQLException e) {
+            System.out.println("Empty sql query to DB");
             e.printStackTrace();
         }
         System.out.print("1" + users.toString());
