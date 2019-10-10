@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class Creator {
+public class ObjectsCreator {
 
     public User createUserObjectFromList(int listElement, List<String> names,List<String> emails){
         User user = new User();
@@ -19,5 +19,4 @@ public class Creator {
         }
         return user;
     }
-
 }

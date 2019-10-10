@@ -10,10 +10,8 @@ import java.util.*;
 @Controller
 public class UserController {
 
-
-
     @Resource
-    UserService userService;
+    ObjectsListCreator objectsListCreator;
 
     private List<String> tasks = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
 
@@ -28,12 +26,10 @@ public class UserController {
     @PostMapping("/")
     public String mainSubmit(Model model, @RequestParam String sqlQuery) throws SQLException {
 
-        List<User> users = userService.getResultFromDBToList(sqlQuery);
-
+        List<User> users = objectsListCreator.createUsersList(sqlQuery);
 
         model.addAttribute("message", message);
         model.addAttribute("tasks", tasks);
-
         model.addAttribute("users", users);
 
         return "welcome";

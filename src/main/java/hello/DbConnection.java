@@ -1,9 +1,12 @@
 package hello;
 
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Objects;
 import java.sql.*;
 
+@Repository
 public class DbConnection {
     Connection conn = null;
     public Statement connectToPostgreSQL(String DbURL, String user, String password) {
