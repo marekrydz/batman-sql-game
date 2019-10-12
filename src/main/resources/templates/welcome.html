@@ -6,8 +6,8 @@
 
     <title>Spring Boot Thymeleaf Hello World Example</title>
 
-        <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
 </head>
 
@@ -16,31 +16,36 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Mkyong.com</a>
 </nav>
-<main role="main" class="container">
-    <div class="starter-template">
-                <h1>SQL training game made by MarcoRy on Spring and Thymeleaf</h1>
-        <h2>
-            <span th:text="'Hello, ' + ${greetingElem}"></span>
-        </h2>
-    </div>
-    <form th:action="@{/}" method="post">
-        <input type="text" name="sqlQuery">
-        <input type="submit" value="Write SQL query">
-    </form>
-    <table border="2">
-        <thead>
-        <th>name</th>
-        <th>email</th>
-        </thead>
-        <th:block>
-            <tr th:each="user: ${users}">
-                <td th:text=" ${user.name}"></td>
-                <td th:text=" ${user.email}"></td>
-            </tr>
-        </th:block>
-    </table>
-    </div>
-</main>
+<!--<main role="main" class="container">-->
+<div class="starter-template">
+    <h4>SQL training game made by MarcoRy on Spring and Thymeleaf</h4>
+</div>
+<form th:action="@{/}" method="post">
+        <textarea style="height:200px" cols="100"
+                  rows="5" type="text" name="sqlQuery">select * from users
+        select u.name, u.email, a.street, a.house_number from users as u
+        left outer join addresses as a on a.id=u.address_id
+        </textarea>
+    <input type="submit" value="Write SQL query">
+</form>
+<table border="2">
+    <thead>
+    <th>name</th>
+    <th>email</th>
+    <th>street</th>
+    <th>number</th>
+    </thead>
+    <th:block>
+        <tr th:each="user: ${users}">
+            <td th:text=" ${user.name}"></td>
+            <td th:text=" ${user.email}"></td>
+            <td th:text=" ${user.address.street}"></td>
+            <td th:text=" *{user.address.houseNumber}"></td>
+        </tr>
+    </th:block>
+</table>
+</div>
+<!--</main>-->
 
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
 </body>

@@ -12,13 +12,21 @@ public class User {
     private String name;
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    public User(String name, String email, Address address) {
+        this.name = name;
+        this.email = email;
+        this.address= address;
+    }
     public User() {
     }
 
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
+
+
+
 
     public Long getId() {
         return id;
@@ -42,6 +50,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

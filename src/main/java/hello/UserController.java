@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public String mainSubmit(Model model, @RequestParam String sqlQuery) throws SQLException {
+    public String mainSubmit(Model model, @RequestParam String sqlQuery)  {
 
         List<User> users = objectsListCreator.createUsersList(sqlQuery);
 
