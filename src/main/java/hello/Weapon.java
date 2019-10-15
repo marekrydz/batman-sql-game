@@ -14,6 +14,10 @@ public class Weapon {
     String name;
     String characteristic;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hero_id")
+    Hero hero;
+
     public Weapon() {
     }
 
@@ -39,6 +43,14 @@ public class Weapon {
 
     public void setCharacteristic(String characteristic) {
         this.characteristic = characteristic;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 
     @Override

@@ -15,7 +15,7 @@ public class BecomeStory {
 
     String how;
 
-    @OneToOne(mappedBy = "becomeStory")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "becomeStory")
     Hero hero;
 
 

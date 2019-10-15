@@ -2,6 +2,7 @@ package hello;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "heroes")
@@ -13,9 +14,12 @@ public class Hero {
     private String name;
     private String realName;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "become_story_id", referencedColumnName = "id")
     private BecomeStory becomeStory;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hero")
+    private Set<Weapon> weapons;
 
     public Hero() {
     }
@@ -45,12 +49,20 @@ public class Hero {
         this.realName = realName;
     }
 
+    public void setBecomeStory(BecomeStory becomeStory) {
+        this.becomeStory = becomeStory;
+    }
+
     public BecomeStory getBecomeStory() {
         return becomeStory;
     }
 
-    public void setBecomeStory(BecomeStory becomeStory) {
-        this.becomeStory = becomeStory;
+    public Set<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(Set<Weapon> weapons) {
+        this.weapons = weapons;
     }
 
     @Override
