@@ -12,26 +12,22 @@ public class ObjectsListCreator {
     private DbRepository dbRepository = new DbRepository();
 
     List createUsersList(String sqlQuery) {
-        List<User> users = new ArrayList<>();
-        Address address;
+        List<Hero> heroes = new ArrayList<>();
+        BecomeStory becomeStory;
         Multimap resultMultimapFromDb = dbRepository.getSqlQueryResultFromDBToMultimap(sqlQuery.trim());
         List<String> names = new ArrayList<>(resultMultimapFromDb.get("name"));
-        List<String> emails = new ArrayList<>(resultMultimapFromDb.get("email"));
-        List<String> street = new ArrayList<>(resultMultimapFromDb.get("street"));
-        List<String> number = new ArrayList<>(resultMultimapFromDb.get("house_number"));
+        List<String> emails = new ArrayList<>(resultMultimapFromDb.get("real_name"));
+        List<String> street = new ArrayList<>(resultMultimapFromDb.get("place"));
+        List<String> number = new ArrayList<>(resultMultimapFromDb.get("how"));
 
-        System.out.println("names" + names.size());
-        System.out.println("emails" + emails.size());
-        System.out.println("dbRepository.numberOfRowsFromDB" + dbRepository.numberOfRowsFromDB);
-
-        //Created users objects from lists and add to users list
+        //Created heroes objects from lists and add to heroes list
         for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
-            address = objectsCreator.createAddressesObjectFromList(i, street, number);
-            users.add(objectsCreator.createUserObjectFromList(i, names, emails, address));
+            becomeStory = objectsCreator.createAddressesObjectFromList(i, street, number);
+            heroes.add(objectsCreator.createUserObjectFromList(i, names, emails, becomeStory));
         }
         dbRepository.numberOfRowsFromDB = 0;
 
-        System.out.print("1" + users.toString());
-        return users;
+        System.out.print("Result:" + heroes.toString());
+        return heroes;
     }
 }

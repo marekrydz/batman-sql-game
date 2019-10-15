@@ -22,25 +22,27 @@
 </div>
 <form th:action="@{/}" method="post">
         <textarea style="height:200px" cols="100"
-                  rows="5" type="text" name="sqlQuery">select * from users
-        select u.name, u.email, a.street, a.house_number from users as u
-        left outer join addresses as a on a.id=u.address_id
+                  rows="5" type="text" name="sqlQuery">
+            select * from heroes
+            select * from heroes as h
+            left join become_stories bs on h.become_story_id = bs.id
         </textarea>
     <input type="submit" value="Write SQL query">
 </form>
 <table border="2">
     <thead>
     <th>name</th>
-    <th>email</th>
-    <th>street</th>
-    <th>number</th>
+    <th>realName</th>
+    <th>how</th>
+    <th>place</th>
+
     </thead>
     <th:block>
-        <tr th:each="user: ${users}">
-            <td th:text=" ${user.name}"></td>
-            <td th:text=" ${user.email}"></td>
-            <td th:text=" ${user.address.street}"></td>
-            <td th:text=" *{user.address.houseNumber}"></td>
+        <tr th:each="hero: ${heroes}">
+            <td th:text=" ${hero.name}"></td>
+            <td th:text=" ${hero.realName}"></td>
+            <td th:text=" ${hero.becomeStory.how}"></td>
+            <td th:text=" *{hero.becomeStory.place}"></td>
         </tr>
     </th:block>
 </table>

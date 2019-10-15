@@ -7,30 +7,30 @@ import java.util.List;
 @Service
 public class ObjectsCreator {
 
-    public User createUserObjectFromList(int listElement, List<String> names,
-                                         List<String> emails, Address address) {
-        User user = new User();
+    public Hero createUserObjectFromList(int listElement, List<String> names,
+                                         List<String> emails, BecomeStory becomeStory) {
+        Hero hero = new Hero();
 
-        if (!address.equals(null) || !address.street.equals("") || address.houseNumber.equals("")) {
-            user.setAddress(address);
+        if (!becomeStory.equals(null) || !becomeStory.place.equals("") || becomeStory.how.equals("")) {
+            hero.setBecomeStory(becomeStory);
         }
         if (!names.isEmpty()) {
-            user.setName(names.get(listElement));
+            hero.setName(names.get(listElement));
         }
         if (!emails.isEmpty()) {
-            user.setEmail(emails.get(listElement));
+            hero.setRealName(emails.get(listElement));
         }
-        return user;
+        return hero;
     }
 
-    public Address createAddressesObjectFromList(int listElement, List<String> street, List<String> houseNumber) {
-        Address address = new Address();
+    public BecomeStory createAddressesObjectFromList(int listElement, List<String> street, List<String> houseNumber) {
+        BecomeStory becomeStory = new BecomeStory();
         if (!street.isEmpty()) {
-            address.setStreet(street.get(listElement));
+            becomeStory.setPlace(street.get(listElement));
         }
         if (!houseNumber.isEmpty()) {
-            address.setHouseNumber(houseNumber.get(listElement));
+            becomeStory.setHow(houseNumber.get(listElement));
         }
-        return address;
+        return becomeStory;
     }
 }

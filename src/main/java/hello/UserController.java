@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import java.sql.*;
 import java.util.*;
 
 @Controller
@@ -26,11 +25,11 @@ public class UserController {
     @PostMapping("/")
     public String mainSubmit(Model model, @RequestParam String sqlQuery)  {
 
-        List<User> users = objectsListCreator.createUsersList(sqlQuery);
+        List<Hero> heroes = objectsListCreator.createUsersList(sqlQuery);
 
         model.addAttribute("message", message);
         model.addAttribute("tasks", tasks);
-        model.addAttribute("users", users);
+        model.addAttribute("heroes", heroes);
 
         return "welcome";
     }
