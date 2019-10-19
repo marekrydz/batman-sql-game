@@ -23,28 +23,45 @@
 <form th:action="@{/}" method="post">
         <textarea style="height:200px" cols="100"
                   rows="5" type="text" name="sqlQuery">
-            select * from heroes
-            select * from heroes as h
-            left join become_stories bs on h.become_story_id = bs.id
+           select * from heroes as h
+left join become_stories bs on h.become_story_id = bs.id;
+
+select * from heroes as h
+left join weapons w on w.hero_id = h.id
+
         </textarea>
     <input type="submit" value="Write SQL query">
 </form>
-<table border="2">
+<table border="2" class="heroes">
     <thead>
     <th>name</th>
     <th>realName</th>
+
+
+    </thead>
+    <tr th:each="hero: ${heroes}">
+        <td th:text=" ${hero.getName()}"></td>
+        <td th:text=" ${hero.getRealName()}"></td>
+</table>
+<table border="2" class="becomes">
+    <thead>
     <th>how</th>
     <th>place</th>
 
     </thead>
-    <th:block>
-        <tr th:each="hero: ${heroes}">
-            <td th:text=" ${hero.name}"></td>
-            <td th:text=" ${hero.realName}"></td>
-            <td th:text=" ${hero.becomeStory.how}"></td>
-            <td th:text=" *{hero.becomeStory.place}"></td>
-        </tr>
-    </th:block>
+    <tr th:each="becomeStory: ${becomeStories}">
+        <td th:text=" ${becomeStory.getHow()}"></td>
+        <td th:text=" ${becomeStory.getPlace()}"></td>
+</table>
+<table border="2" class="weapons">
+    <thead>
+    <th>weapon name</th>
+    <th>characteristic</th>
+
+    </thead>
+    <tr th:each="weapon: ${weapons}">
+        <td th:text=" ${weapon.getWeaponName()}"></td>
+        <td th:text=" ${weapon.getCharacteristic()}"></td>
 </table>
 </div>
 <!--</main>-->

@@ -1,5 +1,7 @@
 package hello;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;

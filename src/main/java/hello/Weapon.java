@@ -11,7 +11,8 @@ public class Weapon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    String name;
+    @Column(name = "weapons_names")
+    String weaponName;
     String characteristic;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,12 +30,12 @@ public class Weapon {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getWeaponName() {
+        return weaponName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
     }
 
     public String getCharacteristic() {
@@ -59,20 +60,20 @@ public class Weapon {
         if (o == null || getClass() != o.getClass()) return false;
         Weapon weapon = (Weapon) o;
         return Objects.equals(id, weapon.id) &&
-                Objects.equals(name, weapon.name) &&
+                Objects.equals(weaponName, weapon.weaponName) &&
                 Objects.equals(characteristic, weapon.characteristic);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, characteristic);
+        return Objects.hash(id, weaponName, characteristic);
     }
 
     @Override
     public String toString() {
         return "Weapon{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", weaponName='" + weaponName + '\'' +
                 ", characteristic='" + characteristic + '\'' +
                 '}';
     }

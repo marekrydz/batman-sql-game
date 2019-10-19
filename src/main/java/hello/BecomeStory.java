@@ -11,12 +11,12 @@ public class BecomeStory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    String place;
+    private String place;
 
-    String how;
+    private String how;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "becomeStory")
-    Hero hero;
+    private Hero hero;
 
 
     public BecomeStory() {

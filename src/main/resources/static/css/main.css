@@ -13,3 +13,7 @@ h1{
 h2{
     color:#FF0000;
 }
+
+table{
+    display: inline-block;
+}
