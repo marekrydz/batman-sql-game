@@ -3,6 +3,7 @@ package hello;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,9 +24,11 @@ public class Hero {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hero")
     private Set<Weapon> weapons;
 
+    @ManyToMany(mappedBy = "heroes")
+    private Set<Enemy> enemies = new HashSet<>();
+
     public Hero() {
     }
-
 
     public Long getId() {
         return id;
@@ -65,6 +68,14 @@ public class Hero {
 
     public void setWeapons(Set<Weapon> weapons) {
         this.weapons = weapons;
+    }
+
+    public Set<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(Set<Enemy> enemies) {
+        this.enemies = enemies;
     }
 
     @Override

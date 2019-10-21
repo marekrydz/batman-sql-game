@@ -58,10 +58,26 @@ public class ObjectsListCreator {
         List<String> characteristic = new ArrayList<>(resultMultimapFromDb.get("characteristic"));
 
         for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
-            weapon = objectsCreator.createWeaponObjectFromList(i,weaponName,characteristic);
+            weapon = objectsCreator.createWeaponObjectFromList(i, weaponName, characteristic);
             weapons.add(weapon);
         }
         dbRepository.numberOfRowsFromDB = 0;
         return weapons;
+    }
+
+    List<Enemy> createdEnemiesList(String sqlQuery) {
+        List<Enemy> enemies = new ArrayList<>();
+        Enemy enemy;
+        Multimap resultMultimapFromDb = dbRepository.getSqlQueryResultFromDBToMultimap(sqlQuery.trim());
+
+        List<String> nick = new ArrayList<>(resultMultimapFromDb.get("nick"));
+        List<String> enemyRealName = new ArrayList<>(resultMultimapFromDb.get("enemy_real_name"));
+
+        for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
+            enemy = objectsCreator.createEnemyObjectFromList(i, nick, enemyRealName);
+            enemies.add(enemy);
+        }
+        dbRepository.numberOfRowsFromDB = 0;
+        return enemies;
     }
 }

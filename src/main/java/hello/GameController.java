@@ -33,9 +33,11 @@ public class GameController {
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
         List<Weapon>weapons = objectsListCreator.createdWeaponsList(sqlQuery);
+        List<Enemy>enemies = objectsListCreator.createdEnemiesList(sqlQuery);
         model.addAttribute("heroes", heroes);
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
         return "welcome";
     }
 

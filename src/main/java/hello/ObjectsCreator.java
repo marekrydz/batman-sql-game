@@ -56,4 +56,15 @@ public class ObjectsCreator {
         }
         return weapon;
     }
+
+    public Enemy createEnemyObjectFromList(int listElement, List<String> nick, List<String> enemyRealName) {
+        Enemy enemy = new Enemy();
+        if (!nick.isEmpty()) {
+            enemy.setNick(nick.get(listElement));
+        }
+        if (!enemyRealName.isEmpty()) {
+            enemy.setEnemyRealName(enemyRealName.get(listElement));
+        }
+        return enemy;
+    }
 }
