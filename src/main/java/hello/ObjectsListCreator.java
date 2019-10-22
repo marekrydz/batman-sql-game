@@ -21,11 +21,12 @@ public class ObjectsListCreator {
         List<String> emails = new ArrayList<>(resultMultimapFromDb.get("real_name"));
 
         //Created heroes objects from lists and add to heroes list
-        for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
-            heroes.add(objectsCreator.createHeroObjectFromRepo(i, names, emails));
+        if (names.size()!=0 && emails.size()!=0) {
+            for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
+                heroes.add(objectsCreator.createHeroObjectFromRepo(i, names, emails));
+            }
         }
         dbRepository.numberOfRowsFromDB = 0;
-
         System.out.print("Result:" + heroes.toString());
         return heroes;
     }
@@ -38,9 +39,11 @@ public class ObjectsListCreator {
         List<String> place = new ArrayList<>(resultMultimapFromDb.get("place"));
 
         //Created heroes objects from lists and add to heroes list
-        for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
-            becomeStory = objectsCreator.createBecomeStoryObjectFromList(i, place, how);
-            becomeStories.add(becomeStory);
+        if (how.size()!=0 && place.size()!=0) {
+            for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
+                becomeStory = objectsCreator.createBecomeStoryObjectFromList(i, place, how);
+                becomeStories.add(becomeStory);
+            }
         }
         dbRepository.numberOfRowsFromDB = 0;
         return becomeStories;
@@ -53,10 +56,11 @@ public class ObjectsListCreator {
 
         List<String> weaponName = new ArrayList<>(resultMultimapFromDb.get("weapons_names"));
         List<String> characteristic = new ArrayList<>(resultMultimapFromDb.get("characteristic"));
-
-        for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
-            weapon = objectsCreator.createWeaponObjectFromList(i, weaponName, characteristic);
-            weapons.add(weapon);
+        if (weaponName.size()!=0 && characteristic.size()!=0) {
+            for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
+                weapon = objectsCreator.createWeaponObjectFromList(i, weaponName, characteristic);
+                weapons.add(weapon);
+            }
         }
         System.out.print("Result:" + weapons.toString());
         dbRepository.numberOfRowsFromDB = 0;
@@ -70,9 +74,11 @@ public class ObjectsListCreator {
         List<String> nick = new ArrayList<>(resultMultimapFromDb.get("nick"));
         List<String> enemyRealName = new ArrayList<>(resultMultimapFromDb.get("enemy_real_name"));
 
-        for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
-            enemy = objectsCreator.createEnemyObjectFromList(i, nick, enemyRealName);
-            enemies.add(enemy);
+        if (nick.size()!=0 && enemyRealName.size()!=0) {
+            for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
+                enemy = objectsCreator.createEnemyObjectFromList(i, nick, enemyRealName);
+                enemies.add(enemy);
+            }
         }
         dbRepository.numberOfRowsFromDB = 0;
         return enemies;
