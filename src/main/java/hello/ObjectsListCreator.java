@@ -15,8 +15,6 @@ public class ObjectsListCreator {
 
     List createHeroesList(String sqlQuery) {
         List<Hero> heroes = new ArrayList<>();
-        BecomeStory becomeStory;
-        Set<Weapon> weapons = new HashSet<>();
 
         Multimap resultMultimapFromDb = dbRepository.getSqlQueryResultFromDBToMultimap(sqlQuery.trim());
         List<String> names = new ArrayList<>(resultMultimapFromDb.get("name"));
@@ -29,7 +27,6 @@ public class ObjectsListCreator {
         dbRepository.numberOfRowsFromDB = 0;
 
         System.out.print("Result:" + heroes.toString());
-        System.out.print("Result:" + weapons.toString());
         return heroes;
     }
 
@@ -61,10 +58,10 @@ public class ObjectsListCreator {
             weapon = objectsCreator.createWeaponObjectFromList(i, weaponName, characteristic);
             weapons.add(weapon);
         }
+        System.out.print("Result:" + weapons.toString());
         dbRepository.numberOfRowsFromDB = 0;
         return weapons;
     }
-
     List<Enemy> createdEnemiesList(String sqlQuery) {
         List<Enemy> enemies = new ArrayList<>();
         Enemy enemy;

@@ -14,11 +14,6 @@ public class GameController {
     @Resource
     ObjectsListCreator objectsListCreator;
 
-    Hero heroTest = new Hero();
-
-    private List<String> tasks = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
-
-
     @Value("${welcome.message}")
     private String message;
 
