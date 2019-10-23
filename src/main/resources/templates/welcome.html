@@ -16,21 +16,20 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Mkyong.com</a>
 </nav>
-<!--<main role="main" class="container">-->
+
 <div class="starter-template">
     <h4>SQL training game made by MarcoRy on Spring and Thymeleaf</h4>
 </div>
 <form th:action="@{/}" method="post">
-        <textarea style="height:200px" cols="100"
+        <textarea style="height:150px" cols="50"
                   rows="5" type="text" name="sqlQuery">
 select *from heroes as h,enemies as e, heroes_enemies as he
 where h.id = he.hero_id and e.id = he.enemy_id;
-
         </textarea>
     <input type="submit" value="Write SQL query">
 </form>
-<div class="results">
-    <table border="2" class="heroes">
+<div class="heroes">
+    <table th:if="${heroes.size()}" border="2" class="heroes">
         <thead>
         <th>name</th>
         <th>realName</th>
@@ -39,27 +38,25 @@ where h.id = he.hero_id and e.id = he.enemy_id;
             <td th:text=" ${hero.getName()}"></td>
             <td th:text=" ${hero.getRealName()}"></td>
     </table>
-    <table border="2" class="becomes">
+    <table th:if="${becomeStories.size()}" border="2" class="becomeStories">
         <thead>
         <th>how</th>
         <th>place</th>
-
         </thead>
         <tr th:each="becomeStory: ${becomeStories}">
             <td th:text=" ${becomeStory.getHow()}"></td>
             <td th:text=" ${becomeStory.getPlace()}"></td>
     </table>
-    <table border="2" class="weapons">
+    <table th:if="${weapons.size()}" border="2" class="weapons">
         <thead>
         <th>weapon name</th>
         <th>characteristic</th>
-
         </thead>
         <tr th:each="weapon: ${weapons}">
             <td th:text=" ${weapon.getWeaponName()}"></td>
             <td th:text=" ${weapon.getCharacteristic()}"></td>
     </table>
-    <table border="2" class="enemies">
+    <table th:if="${enemies.size()}" border="2" class="enemies">
         <thead>
         <th>enemy nick</th>
         <th>enemy real name</th>
@@ -69,7 +66,6 @@ where h.id = he.hero_id and e.id = he.enemy_id;
             <td th:text=" ${enemy.getEnemyRealName()}"></td>
     </table>
 </div>
-<!--</main>-->
 
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
 </body>
