@@ -1,0 +1,60 @@
+html {
+    background: url("batman-background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+
+}
+
+.batmanLogoTxt {
+    text-align: center;
+    width: 100%;
+    height: 120px;
+    font-size: 100px;
+    font-weight: bolder;
+}
+
+
+.gameNameTxt {
+    text-align: center;
+    width: 100%;
+    height: 120px;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+
+.description {
+    height: 30%;
+    width: 100%;
+}
+
+.madeBy {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+@font-face {
+
+    font-family: 'BatmanForeverOutline';
+    font-style: normal;
+    font-weight: normal;
+    src: url('batmfo__.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'BatmanForeverAlternate';
+    color: #0000FF;
+    font-style: normal;
+    font-weight: normal;
+    src: local('BatmanForeverAlternate'), url('batmfa__.woff') format('woff');
+}

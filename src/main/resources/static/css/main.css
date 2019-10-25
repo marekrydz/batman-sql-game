@@ -14,7 +14,7 @@ h2{
     color:#FF0000;
 }
 
-.results{
+.heroes{
     white-space: nowrap;
     display:  inline-flex;
 }
