@@ -1,38 +1,61 @@
 html {
-    background: url("../images/batman-background.jpg") no-repeat center center fixed;
+    background: url("../images/batman-instruction.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-h1 {
 
-}
-
-.batmanLogoTxt {
+.title {
     text-align: center;
     width: 100%;
-    height: 120px;
-    font-size: 100px;
+    height: 70px;
     font-weight: bolder;
-}
-
-
-.gameNameTxt {
-    text-align: center;
-    width: 100%;
-    height: 120px;
     font-size: 50px;
+    color: rgba(185, 236, 185, 0.17)
+}
+
+.instruction, .example {
+    float: left;
+    box-sizing: border-box;
+}
+
+.instruction {
+    font-family: Courier, monospace;
+    color: white;
+    height: 30%;
+    width: 38%;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-right: 270px
+}
+
+.example {
+    font-family: Courier, monospace;
+    color: white;
+    height: 30%;
+    width: 38%;
+    font-size: 22px;
     font-weight: bolder;
 }
 
+.example table, th, td {
+    border: 1px solid white;
+}
 
-/*.description {*/
-/*    height: 30%;*/
-/*    width: 100%;*/
-/*}*/
+.begin {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#beginBtn {
+    height: 40px;
+    width: 100px;
+}
 
 .madeBy {
     position: absolute;
@@ -42,19 +65,6 @@ h1 {
     text-align: center;
     font-size: 30px;
     font-weight: bolder;
-}
-
-.start {
-    width: 100%;
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#startBtn {
-    height: 20px;
-    width: 100px;
 }
 
 @font-face {

@@ -4,9 +4,7 @@ import com.google.common.collect.Multimap;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ObjectsListCreator {
@@ -21,7 +19,7 @@ public class ObjectsListCreator {
         List<String> emails = new ArrayList<>(resultMultimapFromDb.get("real_name"));
 
         //Created heroes objects from lists and add to heroes list
-        if (names.size()!=0 && emails.size()!=0) {
+        if (names.size() != 0 && emails.size() != 0) {
             for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
                 heroes.add(objectsCreator.createHeroObjectFromRepo(i, names, emails));
             }
@@ -39,7 +37,7 @@ public class ObjectsListCreator {
         List<String> place = new ArrayList<>(resultMultimapFromDb.get("place"));
 
         //Created heroes objects from lists and add to heroes list
-        if (how.size()!=0 && place.size()!=0) {
+        if (how.size() != 0 && place.size() != 0) {
             for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
                 becomeStory = objectsCreator.createBecomeStoryObjectFromList(i, place, how);
                 becomeStories.add(becomeStory);
@@ -56,7 +54,7 @@ public class ObjectsListCreator {
 
         List<String> weaponName = new ArrayList<>(resultMultimapFromDb.get("weapons_names"));
         List<String> characteristic = new ArrayList<>(resultMultimapFromDb.get("characteristic"));
-        if (weaponName.size()!=0 && characteristic.size()!=0) {
+        if (weaponName.size() != 0 && characteristic.size() != 0) {
             for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
                 weapon = objectsCreator.createWeaponObjectFromList(i, weaponName, characteristic);
                 weapons.add(weapon);
@@ -66,6 +64,7 @@ public class ObjectsListCreator {
         dbRepository.numberOfRowsFromDB = 0;
         return weapons;
     }
+
     List<Enemy> createdEnemiesList(String sqlQuery) {
         List<Enemy> enemies = new ArrayList<>();
         Enemy enemy;
@@ -74,7 +73,7 @@ public class ObjectsListCreator {
         List<String> nick = new ArrayList<>(resultMultimapFromDb.get("nick"));
         List<String> enemyRealName = new ArrayList<>(resultMultimapFromDb.get("enemy_real_name"));
 
-        if (nick.size()!=0 && enemyRealName.size()!=0) {
+        if (nick.size() != 0 && enemyRealName.size() != 0) {
             for (int i = 0; i < dbRepository.numberOfRowsFromDB; i++) {
                 enemy = objectsCreator.createEnemyObjectFromList(i, nick, enemyRealName);
                 enemies.add(enemy);

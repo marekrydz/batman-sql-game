@@ -1,22 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Page 1 Title</title>
     <link rel="stylesheet" th:href="@{/css/welcome-screen.css}"/>
 
 </head>
 <body>
-<div class="batmanLogoTxt" style="font-family: 'BatmanForeverOutline'" >
+<div class="batmanLogoTxt" style="font-family: 'BatmanForeverOutline'">
     BATMAN
     <div class="gameNameTxt">Training SQL game</div>
 </div>
-<div class="description">
-</div >
-
-<div class="description">
-</div >
-<p class="madeBy">MADE  BY  MR</p>
-
+<div class="start">
+    <button id="startBtn" onclick="location.href = 'http://localhost:8080/instruction'"
+            class="float-left submit-button">Start game
+    </button>
+</div>
+<p class="madeBy">MADE BY MR</p>
 </body>
 </html>

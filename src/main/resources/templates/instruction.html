@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Instruction</title>
+    <link rel="stylesheet" th:href="@{/css/instruction.css}"/>
+
+</head>
+<body>
+<div class="title" style="font-family: 'BatmanForeverAlternate'">
+    INSTRUCTION
+</div>
+
+<div class="instruction">
+    Hi, in this game you will finish tasks using SQL queries.
+    In every mission you get some small description of situation.
+    Story informs what is happening now and what
+    you should do, to move forward.
+    If you do not like read on another side of page it will be separated
+    information only about what you should do to win this level.
+    Also you get information about current "tables"
+    you need to use in round. Inside brackets you have columns names
+</div>
+
+<div class="example">
+    Example: TABLE: Heroes(name, real_name),
+    Mission: Get all information about Catwoman
+    Correct sql query: Select * from heroes where
+    name= 'Catwoman'
+    <br>
+    Result:
+    <table class="exampleTable">
+        <thead>
+        <th>name</th>
+        <th>realName</th>
+        </thead>
+        <td>Catwoman</td>
+        <td>Selina Kyle</td>
+    </table>
+</div>
+
+<div class="begin">
+    <button id="beginBtn" onclick="location.href = 'http://localhost:8080/game'"
+            class="float-left submit-button">Begin adventure
+    </button>
+</div>
+<p class="madeBy">MADE BY MR</p>
+</body>
+</html>
