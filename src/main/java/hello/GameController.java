@@ -25,7 +25,6 @@ public class GameController {
         String mainContent = "Where is Mimis";
         model.addAttribute("mainContent", mainContent);
         return "welcome-screen";
-
     }
 
     @PostMapping("/instruction")
@@ -38,22 +37,27 @@ public class GameController {
         return "instruction";
     }
 
-    @PostMapping("/game")
-    public String game(Model model, @RequestParam String sqlQuery) {
+    @PostMapping("/introduction")
+    public String postIntroduction(Model model, @RequestParam String sqlQuery) {
+        gameLvl++;
+
+        boolean isCorrect = check.isCorrectAnswer(1, sqlQuery);
 
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
-        List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
-        List<Weapon> weapons = objectsListCreator.createdWeaponsList(sqlQuery);
-        List<Enemy> enemies = objectsListCreator.createdEnemiesList(sqlQuery);
+        List<BecomeStory> becomeStories = Collections.emptyList();
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
         model.addAttribute("heroes", heroes);
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
-        return "game";
+
+
+        return "introduction";
     }
 
-    @GetMapping("/game")
-    public String instruction(Model model) {
+    @GetMapping("/introduction")
+    public String getIntroduction(Model model) {
         List<Hero> heroes = Collections.emptyList();
         List<BecomeStory> becomeStories = Collections.emptyList();
         List<Weapon> weapons = Collections.emptyList();
@@ -62,11 +66,11 @@ public class GameController {
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
-        return "game";
+        return "introduction";
     }
 
     @GetMapping("/showAll")
     public String showAll() {
-        return "game";
+        return "introduction";
     }
 }

@@ -2,6 +2,7 @@ package hello;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -10,8 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class DbRepository {
-    private ObjectsCreator objectsCreator = new ObjectsCreator();
+
     private DbConnection dbConnection = new DbConnection();
     int numberOfRowsFromDB = 0;
 
