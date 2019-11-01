@@ -17,8 +17,14 @@ public class GameController {
     @Resource
     ObjectsListCreator objectsListCreator;
 
+    @Resource
+    Check check;
+
     @Value("${welcome.message}")
     private String message;
+
+    int gameLvl = 0;
+    String isCorrect;
 
     @GetMapping("/")
     public String welcome(Model model) {
@@ -40,9 +46,7 @@ public class GameController {
     @PostMapping("/introduction")
     public String postIntroduction(Model model, @RequestParam String sqlQuery) {
         gameLvl++;
-
-        boolean isCorrect = check.isCorrectAnswer(1, sqlQuery);
-
+        isCorrect = check.isCorrectAnswer(1, sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = Collections.emptyList();
         List<Weapon> weapons = Collections.emptyList();
@@ -51,6 +55,7 @@ public class GameController {
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
+        model.addAttribute("isCorrect", isCorrect);
 
 
         return "introduction";
@@ -58,6 +63,7 @@ public class GameController {
 
     @GetMapping("/introduction")
     public String getIntroduction(Model model) {
+        isCorrect = AnswerEnum.Neutral.name();
         List<Hero> heroes = Collections.emptyList();
         List<BecomeStory> becomeStories = Collections.emptyList();
         List<Weapon> weapons = Collections.emptyList();
@@ -66,9 +72,44 @@ public class GameController {
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
+        model.addAttribute("isCorrect", isCorrect);
+
         return "introduction";
     }
 
+    @PostMapping("/lvl2")
+    public String postLvl2(Model model, @RequestParam String sqlQuery) {
+        gameLvl++;
+        isCorrect = check.isCorrectAnswer(2, sqlQuery);
+        List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
+        List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("isCorrect", isCorrect);
+
+
+        return "lvl2";
+    }
+
+    @GetMapping("/lvl2")
+    public String getLvl2(Model model) {
+        isCorrect = AnswerEnum.Neutral.name();
+        List<Hero> heroes = Collections.emptyList();
+        List<BecomeStory> becomeStories = Collections.emptyList();
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("isCorrect", isCorrect);
+
+        return "lvl2";
+    }
     @GetMapping("/showAll")
     public String showAll() {
         return "introduction";

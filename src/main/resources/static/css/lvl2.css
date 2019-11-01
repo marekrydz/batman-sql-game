@@ -4,6 +4,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
 }
 
 .title {
@@ -12,7 +13,7 @@ html {
     height: 70px;
     font-weight: bolder;
     font-size: 30px;
-    color: rgba(202, 254, 202, 0.17)
+    color: rgba(195, 201, 193, 0.76)
 }
 
 .instruction {
@@ -22,7 +23,7 @@ html {
 
 .instruction {
     font-family: Courier, monospace;
-    color: white;
+    color: #ffffff;
     height: 30%;
     width: 46%;
     font-size: 20px;
@@ -43,12 +44,19 @@ html {
     margin-bottom: 10px;
 }
 
-.result, th, td {
-    font-size: 25px;
-    color: #f2f7f9;
+.result {
+    display: flex;
+}
+
+th, td {
     border: 1px solid white;
+}
+
+.result, th, td {
+    font-size: 18px;
+    color: #f2f7f9;
     width: fit-content;
-    margin-left: 50%;
+    margin-left: 35%;
     margin-top: 20px;
 }
 

@@ -5,57 +5,59 @@
 
     <title>Spring Boot Thymeleaf Hello World Example</title>
 
-    <link rel="stylesheet" th:href="@{/css/introduction.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lvl2.css}"/>
 
 </head>
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    INTRODUCTION
+    LEVEL II
 </div>
 
 
 <div class="instruction" th:if="${isCorrect=='Neutral'}">
-    Usually heroes hide behind the masks.
-    They also have a normal live.
-    Every body what's to know their personality. And you will.
-    Your mission is to check the Batman's real name.
+    Some heroes born with special skills and another not.
+    Do you know what happen in Batman's live to make him
+    who he is? Get information about what happened and where.
     <br>
     <div class="mission">
-        MISSION: get hero name and his real name
+        MISSION: get Batman name, how and place
         <br>
-        TABLE: heroes (name, real_name)
+        TABLES: heroes (name, real_name),
+        become_stories(how, place)
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/introduction}" method="POST">
-        <textarea style="height:50px" cols="50"
+<form class="sqlQuery" th:action="@{/lvl2}" method="POST">
+        <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-select *from heroes where name = 'Batman'
+select h.name, bs.how, bs.place from heroes as h
+join become_stories bs on h.become_story_id = bs.id
+where h.name= 'Batman'
         </textarea>
     <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">Write SQL query</button>
 </form>
 
 <div class="result">
     <table>
-        <thead>
-        <th>name</th>
-        <th>realName</th>
+        <thead th:each="hero: ${heroes}">
+        <th th:if="${hero.getName()}">name</th>
+        <th th:if="${hero.getRealName()}">realName</th>
         </thead>
         <tr th:each="hero: ${heroes}">
             <td th:text=" ${hero.getName()}"></td>
-            <td th:text=" ${hero.getRealName()}"></td>
+            <td th:if="${hero.getRealName()}" th:text=" ${hero.getRealName()}"></td>
     </table>
-    <table th:if="${becomeStories.size()}" border="2" class="becomeStories">
+    <table class="becomeStories">
         <thead>
         <th>how</th>
         <th>place</th>
         </thead>
         <tr th:each="becomeStory: ${becomeStories}">
             <td th:text=" ${becomeStory.getHow()}"></td>
-            <td th:text=" ${becomeStory.getPlace()}"></td>
+            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getPlace()}"></td>
     </table>
-    <table th:if="${weapons.size()}" border="2" class="weapons">
+    <table th:if="${weapons.size()}" class="weapons">
         <thead>
         <th>weapon name</th>
         <th>characteristic</th>
@@ -64,7 +66,7 @@ select *from heroes where name = 'Batman'
             <td th:text=" ${weapon.getWeaponName()}"></td>
             <td th:text=" ${weapon.getCharacteristic()}"></td>
     </table>
-    <table th:if="${enemies.size()}" border="2" class="enemies">
+    <table th:if="${enemies.size()}" class="enemies">
         <thead>
         <th>enemy nick</th>
         <th>enemy real name</th>
@@ -77,9 +79,7 @@ select *from heroes where name = 'Batman'
 <div class="answer">
     <div class="correctAnswer" th:if="${isCorrect=='Correct'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl2}" method="GET">
-            <button class="nextRoundBtn">Go to next round</button>
-        </form>
+        <button class="nextRoundBtn">Go to next round</button>
     </div>
     <div class="wrongAnswer" th:if="${isCorrect=='Wrong'}">
         <p>Wrong. Try again player</p>
