@@ -72,6 +72,12 @@ th, td {
     right: 76px;
 }
 
+.wrongAnswer {
+    color: #FF0000;
+    position: absolute;
+    top: 310px;
+    right: 13px;
+}
 .nextRoundBtn {
     position: absolute;
     top: 90px;

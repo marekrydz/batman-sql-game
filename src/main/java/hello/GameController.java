@@ -23,7 +23,6 @@ public class GameController {
     @Value("${welcome.message}")
     private String message;
 
-    int gameLvl = 0;
     String isCorrect;
 
     @GetMapping("/")
@@ -45,7 +44,6 @@ public class GameController {
 
     @PostMapping("/introduction")
     public String postIntroduction(Model model, @RequestParam String sqlQuery) {
-        gameLvl++;
         isCorrect = check.isCorrectAnswer(1, sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = Collections.emptyList();
@@ -79,7 +77,6 @@ public class GameController {
 
     @PostMapping("/lvl2")
     public String postLvl2(Model model, @RequestParam String sqlQuery) {
-        gameLvl++;
         isCorrect = check.isCorrectAnswer(2, sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
@@ -110,6 +107,43 @@ public class GameController {
 
         return "lvl2";
     }
+
+    @PostMapping("/lvl3")
+    public String postLvl3(Model model, @RequestParam String sqlQuery) {
+
+        isCorrect = check.isCorrectAnswer(3, sqlQuery);
+        List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
+        List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("isCorrect", isCorrect);
+
+
+        return "lvl3";
+    }
+
+    @GetMapping("/lvl3")
+    public String getLvl3(Model model) {
+        isCorrect = AnswerEnum.Neutral.name();
+        List<Hero> heroes = Collections.emptyList();
+        List<BecomeStory> becomeStories = Collections.emptyList();
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("isCorrect", isCorrect);
+
+        return "lvl3";
+    }
+
+
+
     @GetMapping("/showAll")
     public String showAll() {
         return "introduction";

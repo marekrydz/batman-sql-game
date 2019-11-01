@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="instruction" th:if="${isCorrect=='Neutral'}">
+<div class="instruction" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">
     Some heroes born with special skills and another not.
     Do you know what happen in Batman's live to make him
     who he is? Get information about what happened and where.
@@ -38,7 +38,7 @@ where h.name= 'Batman'
     <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">Write SQL query</button>
 </form>
 
-<div class="result">
+<div class="result" th:if="${isCorrect=='Correct'}">
     <table>
         <thead th:each="hero: ${heroes}">
         <th th:if="${hero.getName()}">name</th>
@@ -49,12 +49,12 @@ where h.name= 'Batman'
             <td th:if="${hero.getRealName()}" th:text=" ${hero.getRealName()}"></td>
     </table>
     <table class="becomeStories">
-        <thead>
-        <th>how</th>
-        <th>place</th>
+        <thead th:each="becomeStory: ${becomeStories}">
+        <th th:if="${becomeStory.getHow()}">how</th>
+        <th th:if="${becomeStory.getPlace()}">place</th>
         </thead>
         <tr th:each="becomeStory: ${becomeStories}">
-            <td th:text=" ${becomeStory.getHow()}"></td>
+            <td th:if="${becomeStory.getHow()}" th:text=" ${becomeStory.getHow()}"></td>
             <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getPlace()}"></td>
     </table>
     <table th:if="${weapons.size()}" class="weapons">
@@ -79,7 +79,9 @@ where h.name= 'Batman'
 <div class="answer">
     <div class="correctAnswer" th:if="${isCorrect=='Correct'}">
         <p>Great it is correct answer</p>
-        <button class="nextRoundBtn">Go to next round</button>
+        <form class="nextRound" th:action="@{/lvl3}" method="GET">
+            <button class="nextRoundBtn">Go to next round</button>
+        </form>
     </div>
     <div class="wrongAnswer" th:if="${isCorrect=='Wrong'}">
         <p>Wrong. Try again player</p>

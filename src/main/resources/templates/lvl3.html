@@ -3,46 +3,45 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Spring Boot Thymeleaf Hello World Example</title>
-
-    <link rel="stylesheet" th:href="@{/css/lvl2.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lvl3.css}"/>
 
 </head>
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    LEVEL II
+    LEVEL III
 </div>
 
 
-<div class="instruction" th:if="${isCorrect=='Neutral'}">
-    Some heroes born with special skills and another not.
-    Do you know what happen in Batman's live to make him
-    who he is? Get information about what happened and where.
+<div class="instruction" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">
+    It is difficult to fight alone with enemy who is very strong.
+    Batman's has also friends which help him many times.
+    Let's meet his friends and check theirs way to become who they are.
     <br>
     <div class="mission">
-        MISSION: get Batman name, how and place
+        MISSION: Get all heroes names, real_names, how and place;
+        IMPORTANT: Choose query which show all heroes even them which do not
+        have become_story
         <br>
         TABLES: heroes (name, real_name),
         become_stories(how, place)
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl2}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl3}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-select h.name, bs.how, bs.place from heroes as h
-join become_stories bs on h.become_story_id = bs.id
-where h.name= 'Batman'
+Select * from heroes
+full join  become_stories on heroes.become_story_id= become_stories.id
         </textarea>
     <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">Write SQL query</button>
 </form>
 
-<div class="result">
+<div class="result" th:if="${isCorrect=='Correct'}">
     <table>
-        <thead th:each="hero: ${heroes}">
-        <th th:if="${hero.getName()}">name</th>
-        <th th:if="${hero.getRealName()}">realName</th>
+        <thead>
+        <th>name</th>
+        <th>realName</th>
         </thead>
         <tr th:each="hero: ${heroes}">
             <td th:text=" ${hero.getName()}"></td>
@@ -54,22 +53,22 @@ where h.name= 'Batman'
         <th>place</th>
         </thead>
         <tr th:each="becomeStory: ${becomeStories}">
-            <td th:text=" ${becomeStory.getHow()}"></td>
+            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getHow()}"></td>
             <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getPlace()}"></td>
     </table>
-    <table th:if="${weapons.size()}" class="weapons">
-        <thead>
-        <th>weapon name</th>
-        <th>characteristic</th>
+    <table class="weapons">
+        <thead th:each="weapon: ${weapons}">
+        <th th:text=" ${weapon.getWeaponName()}">weapon name</th>
+        <th th:text=" ${weapon.getWeaponName()}">characteristic</th>
         </thead>
         <tr th:each="weapon: ${weapons}">
             <td th:text=" ${weapon.getWeaponName()}"></td>
             <td th:text=" ${weapon.getCharacteristic()}"></td>
     </table>
-    <table th:if="${enemies.size()}" class="enemies">
-        <thead>
-        <th>enemy nick</th>
-        <th>enemy real name</th>
+    <table class="enemies">
+        <thead th:each="enemy: ${enemies}">
+        <th th:text=" ${enemy.getNick()}">enemy nick</th>
+        <th th:text=" ${enemy.getEnemyRealName()}">enemy real name</th>
         </thead>
         <tr th:each="enemy: ${enemies}">
             <td th:text=" ${enemy.getNick()}"></td>
