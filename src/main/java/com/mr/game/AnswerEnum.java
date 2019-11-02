@@ -1,4 +1,4 @@
-package hello;
+package com.mr.game;
 
 public enum AnswerEnum {
     Correct(),

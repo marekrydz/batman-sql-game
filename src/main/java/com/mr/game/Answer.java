@@ -1,4 +1,4 @@
-package hello;
+package com.mr.game;
 
 import javax.persistence.*;
 import java.util.Objects;

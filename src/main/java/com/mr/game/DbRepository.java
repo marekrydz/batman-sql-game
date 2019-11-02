@@ -1,4 +1,4 @@
-package hello;
+package com.mr.game;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;

@@ -1,6 +1,4 @@
-package hello;
-
-import org.springframework.stereotype.Component;
+package com.mr.game;
 
 import javax.persistence.*;
 import java.util.HashSet;

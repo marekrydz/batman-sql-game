@@ -1,4 +1,4 @@
-package hello;
+package com.mr.game;
 
 import com.google.common.collect.Multimap;
 import org.springframework.stereotype.Service;

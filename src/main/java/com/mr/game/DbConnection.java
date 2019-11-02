@@ -1,10 +1,13 @@
-package hello;
+package com.mr.game;
 
 
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Objects;
-import java.sql.*;
 
 @Repository
 public class DbConnection {
