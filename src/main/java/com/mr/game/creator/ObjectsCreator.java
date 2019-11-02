@@ -1,5 +1,9 @@
-package com.mr.game;
+package com.mr.game.creator;
 
+import com.mr.game.model.BecomeStory;
+import com.mr.game.model.Enemy;
+import com.mr.game.model.Hero;
+import com.mr.game.model.Weapon;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

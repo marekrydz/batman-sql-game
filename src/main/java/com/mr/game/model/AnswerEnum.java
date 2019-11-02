@@ -1,4 +1,4 @@
-package com.mr.game;
+package com.mr.game.model;
 
 public enum AnswerEnum {
     Correct(),

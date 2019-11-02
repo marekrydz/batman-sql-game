@@ -1,6 +1,8 @@
-package com.mr.game;
+package com.mr.game.service;
 
 import com.google.common.collect.Multimap;
+import com.mr.game.model.AnswerEnum;
+import com.mr.game.repository.DbRepository;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,8 +21,8 @@ public class Check {
     @Enumerated(EnumType.STRING)
     AnswerEnum answerEnum;
 
-    String isCorrectAnswer(int gameLvl, String playerSql) {
-        String correctSql = answerService.getAnswer(gameLvl);
+    public String isCorrectAnswer(int gameLvl, String playerSql) {
+        String correctSql = answerService.getAnswerByGameLvl(gameLvl);
         Multimap correctAnswer = dbRepository.getSqlQueryResultFromDBToMultimap(correctSql);
         Multimap playerAnswer = dbRepository.getSqlQueryResultFromDBToMultimap(playerSql);
 

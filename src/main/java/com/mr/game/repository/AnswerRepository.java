@@ -1,5 +1,6 @@
-package com.mr.game;
+package com.mr.game.repository;
 
+import com.mr.game.model.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.annotation.Resource;

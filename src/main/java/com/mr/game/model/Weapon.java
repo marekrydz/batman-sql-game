@@ -1,4 +1,4 @@
-package com.mr.game;
+package com.mr.game.model;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package com.mr.game;
+package com.mr.game.repository;
 
 
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Repository
 public class DbConnection {
-    Connection conn = null;
+    public Connection conn = null;
     public Statement connectToPostgreSQL(String DbURL, String user, String password) {
         Statement statement = null;
 

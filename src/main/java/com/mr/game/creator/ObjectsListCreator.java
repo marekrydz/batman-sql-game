@@ -1,6 +1,11 @@
-package com.mr.game;
+package com.mr.game.creator;
 
 import com.google.common.collect.Multimap;
+import com.mr.game.model.BecomeStory;
+import com.mr.game.model.Enemy;
+import com.mr.game.model.Hero;
+import com.mr.game.model.Weapon;
+import com.mr.game.repository.DbRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +16,7 @@ public class ObjectsListCreator {
     private ObjectsCreator objectsCreator = new ObjectsCreator();
     private DbRepository dbRepository = new DbRepository();
 
-    List createHeroesList(String sqlQuery) {
+    public List createHeroesList(String sqlQuery) {
         List<Hero> heroes = new ArrayList<>();
 
         Multimap resultMultimapFromDb = dbRepository.getSqlQueryResultFromDBToMultimap(sqlQuery.trim());
@@ -29,7 +34,7 @@ public class ObjectsListCreator {
         return heroes;
     }
 
-    List createBecomeStoriesList(String sqlQuery) {
+    public List createBecomeStoriesList(String sqlQuery) {
         List<BecomeStory> becomeStories = new ArrayList<>();
         BecomeStory becomeStory;
         Multimap resultMultimapFromDb = dbRepository.getSqlQueryResultFromDBToMultimap(sqlQuery.trim());

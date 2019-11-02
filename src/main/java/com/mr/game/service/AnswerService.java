@@ -1,6 +1,7 @@
-package com.mr.game;
+package com.mr.game.service;
 
 
+import com.mr.game.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +12,7 @@ public class AnswerService {
     @Resource
     private AnswerRepository answerRepository;
 
-    public String getAnswer(int gameLvl) {
+    public String getAnswerByGameLvl(int gameLvl) {
         return answerRepository.getAnswerByGameLvl(gameLvl).getAnswerSql();
     }
 }

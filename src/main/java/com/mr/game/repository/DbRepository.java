@@ -1,4 +1,4 @@
-package com.mr.game;
+package com.mr.game.repository;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -15,9 +15,9 @@ import java.util.List;
 public class DbRepository {
 
     private DbConnection dbConnection = new DbConnection();
-    int numberOfRowsFromDB = 0;
+    public int numberOfRowsFromDB = 0;
 
-    Multimap getSqlQueryResultFromDBToMultimap(String sqlQuery) {
+    public Multimap getSqlQueryResultFromDBToMultimap(String sqlQuery) {
         ResultSet rs;
 
         String url = "jdbc:postgresql://localhost:5432/postgres";
