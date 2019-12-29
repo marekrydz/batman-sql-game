@@ -3,7 +3,6 @@ package com.mr.game.controller;
 import com.mr.game.creator.ObjectsListCreator;
 import com.mr.game.model.*;
 import com.mr.game.service.Check;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +22,8 @@ public class GameController {
     @Resource
     Check check;
 
-    @Value("${welcome.message}")
-    private String message;
+//    @Value("${welcome.message}")
+//    private String message;
 
     String isCorrect;
 

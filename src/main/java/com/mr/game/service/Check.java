@@ -35,5 +35,4 @@ public class Check {
         return AnswerEnum.Neutral.name();
 
     }
-
 }

@@ -31,9 +31,6 @@
 <form class="sqlQuery" th:action="@{/lvl2}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-select h.name, bs.how, bs.place from heroes as h
-join become_stories bs on h.become_story_id = bs.id
-where h.name= 'Batman'
         </textarea>
     <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">Write SQL query</button>
 </form>
