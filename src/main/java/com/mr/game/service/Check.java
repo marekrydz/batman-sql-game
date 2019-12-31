@@ -24,7 +24,9 @@ public class Check {
     public String isCorrectAnswer(int gameLvl, String playerSql) {
         String correctSql = answerService.getAnswerByGameLvl(gameLvl);
         Multimap correctAnswer = dbRepository.getSqlQueryResultFromDBToMultimap(correctSql);
+        dbRepository.numberOfRowsFromDB=0;
         Multimap playerAnswer = dbRepository.getSqlQueryResultFromDBToMultimap(playerSql);
+        dbRepository.numberOfRowsFromDB=0;
 
         if (correctAnswer.equals(playerAnswer)) {
             return AnswerEnum.Correct.name();

@@ -22,15 +22,11 @@ public class GameController {
     @Resource
     Check check;
 
-//    @Value("${welcome.message}")
-//    private String message;
 
     String isCorrect;
 
     @GetMapping("/")
     public String welcome(Model model) {
-        String mainContent = "Where is Mimis";
-        model.addAttribute("mainContent", mainContent);
         return "welcome-screen";
     }
 

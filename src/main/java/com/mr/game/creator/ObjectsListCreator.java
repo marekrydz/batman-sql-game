@@ -8,13 +8,16 @@ import com.mr.game.model.Weapon;
 import com.mr.game.repository.DbRepository;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ObjectsListCreator {
-    private ObjectsCreator objectsCreator = new ObjectsCreator();
-    private DbRepository dbRepository = new DbRepository();
+    @Resource
+    private ObjectsCreator objectsCreator;
+    @Resource
+    private DbRepository dbRepository;
 
     public List createHeroesList(String sqlQuery) {
         List<Hero> heroes = new ArrayList<>();

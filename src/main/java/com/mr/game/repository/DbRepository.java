@@ -2,6 +2,7 @@ package com.mr.game.repository;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -11,22 +12,29 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+//import com.mr.game.configuration.ConfigurationDB;
+
 @Component
 public class DbRepository {
 
     private DbConnection dbConnection = new DbConnection();
     public int numberOfRowsFromDB = 0;
+    private String url;
+    private String password;
+    private String username;
+
+    public DbRepository(@Value("${spring.datasource.url}")String url,@Value("${spring.datasource.password}") String password,  @Value("${spring.datasource.username}")String username) {
+        this.url = url;
+        this.password = password;
+        this.username = username;
+    }
 
     public Multimap getSqlQueryResultFromDBToMultimap(String sqlQuery) {
         ResultSet rs;
-
-        String url = "jdbc:postgresql://localhost:5432/postgres";
-        String user = "postgres";
-        String password = "marek";
         Multimap<String, String> multiMap = ArrayListMultimap.create();
 
         try {
-            Statement stmt = dbConnection.connectToPostgreSQL(url, user, password);
+            Statement stmt = dbConnection.connectToPostgreSQL(url, username, password);
             rs = stmt.executeQuery(sqlQuery);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
@@ -40,7 +48,6 @@ public class DbRepository {
                     multiMap.put(columnName, rs.getString(columnName));
                 }
             }
-
             dbConnection.conn.close();
 
         } catch (
