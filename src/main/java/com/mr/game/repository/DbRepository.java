@@ -57,4 +57,17 @@ public class DbRepository {
         }
         return multiMap;
     }
+
+    public boolean isResultSetsIdentical(String firstSqlQuery, String secondSqlQuery) {
+        Statement stmt = dbConnection.connectToPostgreSQL("jdbc:postgresql://localhost:5432/postgres", "postgres", "marek");
+        ResultSet resultSet;
+        boolean isIdentical = false;
+        try {
+            resultSet = stmt.executeQuery( firstSqlQuery + " except " + secondSqlQuery);
+            isIdentical = !resultSet.isBeforeFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isIdentical;
+    }
 }
