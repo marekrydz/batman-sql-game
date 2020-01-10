@@ -10,7 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Component
-public class Check {
+public class CheckService {
 
     @Resource
     DbRepository dbRepository;
@@ -35,6 +35,5 @@ public class Check {
             return AnswerEnum.Wrong.name();
         }
         return AnswerEnum.Neutral.name();
-
     }
 }
