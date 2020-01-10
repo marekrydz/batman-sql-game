@@ -2,7 +2,7 @@ package com.mr.game.controller;
 
 import com.mr.game.creator.ObjectsListCreator;
 import com.mr.game.model.*;
-import com.mr.game.service.Check;
+import com.mr.game.service.CheckService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class GameController {
     ObjectsListCreator objectsListCreator;
 
     @Resource
-    Check check;
+    CheckService checkService;
 
 
     String isCorrect;
@@ -42,7 +42,7 @@ public class GameController {
 
     @PostMapping("/introduction")
     public String postIntroduction(Model model, @RequestParam String sqlQuery) {
-        isCorrect = check.isCorrectAnswer(1, sqlQuery);
+        isCorrect = checkService.isCorrectAnswer(1, sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = Collections.emptyList();
         List<Weapon> weapons = Collections.emptyList();
@@ -75,7 +75,7 @@ public class GameController {
 
     @PostMapping("/lvl2")
     public String postLvl2(Model model, @RequestParam String sqlQuery) {
-        isCorrect = check.isCorrectAnswer(2, sqlQuery);
+        isCorrect = checkService.isCorrectAnswer(2, sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
         List<Weapon> weapons = Collections.emptyList();
@@ -109,7 +109,7 @@ public class GameController {
     @PostMapping("/lvl3")
     public String postLvl3(Model model, @RequestParam String sqlQuery) {
 
-        isCorrect = check.isCorrectAnswer(3, sqlQuery);
+        isCorrect = checkService.isCorrectAnswer(3, sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
         List<Weapon> weapons = Collections.emptyList();
