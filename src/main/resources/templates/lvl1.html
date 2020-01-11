@@ -5,7 +5,7 @@
 
     <title>Spring Boot Thymeleaf Hello World Example</title>
 
-    <link rel="stylesheet" th:href="@{/css/introduction.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lvl1.css}"/>
 
 </head>
 
@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="instruction" th:if="${isCorrect=='Neutral'}">
+<div class="instruction" th:if="${answerStatus=='Neutral'}">
     Usually heroes hide behind the masks.
     They also have a normal live.
     Every body what's to know their personality. And you will.
@@ -28,11 +28,11 @@
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/introduction}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl1}" method="POST">
         <textarea style="height:50px" cols="50"
                   rows="5" type="text" name="sqlQuery">
         </textarea>
-    <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='WrongAnswer'}">Write SQL query</button>
+    <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
 
 <div class="result">
@@ -74,13 +74,13 @@
     </table>
 </div>
 <div class="answer">
-    <div class="correctAnswer" th:if="${isCorrect=='CorrectAnswer'}">
+    <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
         <form class="nextRound" th:action="@{/lvl2}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>
-    <div class="wrongAnswer" th:if="${isCorrect=='WrongAnswer'}">
+    <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
         <p>Wrong. Try again player</p>
     </div>
 </div>

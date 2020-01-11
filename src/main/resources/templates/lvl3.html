@@ -13,7 +13,7 @@
 </div>
 
 
-<div class="instruction" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">
+<div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
     It is difficult to fight alone with enemy who is very strong.
     Batman's has also friends which help him many times.
     Let's meet his friends and check theirs way to become who they are.
@@ -32,10 +32,10 @@
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
         </textarea>
-    <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">Write SQL query</button>
+    <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
 
-<div class="result" th:if="${isCorrect=='Correct'}">
+<div class="result" th:if="${answerStatus=='CorrectAnswer'}">
     <table>
         <thead>
         <th>name</th>
@@ -74,11 +74,11 @@
     </table>
 </div>
 <div class="answer">
-    <div class="correctAnswer" th:if="${isCorrect=='Correct'}">
+    <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
         <button class="nextRoundBtn">Go to next round</button>
     </div>
-    <div class="wrongAnswer" th:if="${isCorrect=='Wrong'}">
+    <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
         <p>Wrong. Try again player</p>
     </div>
 </div>

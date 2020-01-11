@@ -22,8 +22,7 @@ public class GameController {
     @Resource
     CheckService checkService;
 
-
-    String isCorrect;
+    String answerStatus;
 
     @GetMapping("/")
     public String welcome(Model model) {
@@ -40,26 +39,8 @@ public class GameController {
         return "instruction";
     }
 
-    @PostMapping("/introduction")
-    public String postIntroduction(Model model, @RequestParam String sqlQuery) {
-        isCorrect = checkService.isCorrectAnswer(1, sqlQuery);
-        List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
-        List<BecomeStory> becomeStories = Collections.emptyList();
-        List<Weapon> weapons = Collections.emptyList();
-        List<Enemy> enemies = Collections.emptyList();
-        model.addAttribute("heroes", heroes);
-        model.addAttribute("weapons", weapons);
-        model.addAttribute("becomeStories", becomeStories);
-        model.addAttribute("enemies", enemies);
-        model.addAttribute("isCorrect", isCorrect);
-
-
-        return "introduction";
-    }
-
-    @GetMapping("/introduction")
-    public String getIntroduction(Model model) {
-        isCorrect = AnswerEnum.Neutral.name();
+    @GetMapping("/lvl1")
+    public String getLvl1(Model model) {
         List<Hero> heroes = Collections.emptyList();
         List<BecomeStory> becomeStories = Collections.emptyList();
         List<Weapon> weapons = Collections.emptyList();
@@ -68,14 +49,45 @@ public class GameController {
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
-        model.addAttribute("isCorrect", isCorrect);
+        model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        return "lvl1";
+    }
 
-        return "introduction";
+    @PostMapping("/lvl1")
+    public String postLvl1(Model model, @RequestParam String sqlQuery) {
+        answerStatus = checkService.isAnswerCorrect(1,sqlQuery);
+        List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
+        List<BecomeStory> becomeStories = Collections.emptyList();
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("answerStatus", answerStatus);
+        return "lvl1";
+    }
+
+
+
+    @GetMapping("/lvl2")
+    public String getLvl2(Model model) {
+        List<Hero> heroes = Collections.emptyList();
+        List<BecomeStory> becomeStories = Collections.emptyList();
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+
+        return "lvl2";
     }
 
     @PostMapping("/lvl2")
     public String postLvl2(Model model, @RequestParam String sqlQuery) {
-        isCorrect = checkService.isCorrectAnswer(2, sqlQuery);
+        answerStatus = checkService.isAnswerCorrect(2,sqlQuery);
         List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
         List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
         List<Weapon> weapons = Collections.emptyList();
@@ -84,49 +96,14 @@ public class GameController {
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
-        model.addAttribute("isCorrect", isCorrect);
+        model.addAttribute("answerStatus", answerStatus);
 
 
         return "lvl2";
-    }
-
-    @GetMapping("/lvl2")
-    public String getLvl2(Model model) {
-        isCorrect = AnswerEnum.Neutral.name();
-        List<Hero> heroes = Collections.emptyList();
-        List<BecomeStory> becomeStories = Collections.emptyList();
-        List<Weapon> weapons = Collections.emptyList();
-        List<Enemy> enemies = Collections.emptyList();
-        model.addAttribute("heroes", heroes);
-        model.addAttribute("weapons", weapons);
-        model.addAttribute("becomeStories", becomeStories);
-        model.addAttribute("enemies", enemies);
-        model.addAttribute("isCorrect", isCorrect);
-
-        return "lvl2";
-    }
-
-    @PostMapping("/lvl3")
-    public String postLvl3(Model model, @RequestParam String sqlQuery) {
-
-        isCorrect = checkService.isCorrectAnswer(3, sqlQuery);
-        List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
-        List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
-        List<Weapon> weapons = Collections.emptyList();
-        List<Enemy> enemies = Collections.emptyList();
-        model.addAttribute("heroes", heroes);
-        model.addAttribute("weapons", weapons);
-        model.addAttribute("becomeStories", becomeStories);
-        model.addAttribute("enemies", enemies);
-        model.addAttribute("isCorrect", isCorrect);
-
-
-        return "lvl3";
     }
 
     @GetMapping("/lvl3")
     public String getLvl3(Model model) {
-        isCorrect = AnswerEnum.Neutral.name();
         List<Hero> heroes = Collections.emptyList();
         List<BecomeStory> becomeStories = Collections.emptyList();
         List<Weapon> weapons = Collections.emptyList();
@@ -135,8 +112,22 @@ public class GameController {
         model.addAttribute("weapons", weapons);
         model.addAttribute("becomeStories", becomeStories);
         model.addAttribute("enemies", enemies);
-        model.addAttribute("isCorrect", isCorrect);
+        model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        return "lvl3";
+    }
 
+    @PostMapping("/lvl3")
+    public String postLvl3(Model model, @RequestParam String sqlQuery) {
+        answerStatus = checkService.isAnswerCorrect(3,sqlQuery);
+        List<Hero> heroes = objectsListCreator.createHeroesList(sqlQuery);
+        List<BecomeStory> becomeStories = objectsListCreator.createBecomeStoriesList(sqlQuery);
+        List<Weapon> weapons = Collections.emptyList();
+        List<Enemy> enemies = Collections.emptyList();
+        model.addAttribute("heroes", heroes);
+        model.addAttribute("weapons", weapons);
+        model.addAttribute("becomeStories", becomeStories);
+        model.addAttribute("enemies", enemies);
+        model.addAttribute("answerStatus", answerStatus);
         return "lvl3";
     }
 
@@ -144,6 +135,6 @@ public class GameController {
 
     @GetMapping("/showAll")
     public String showAll() {
-        return "introduction";
+        return "lvl1";
     }
 }

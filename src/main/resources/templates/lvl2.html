@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="instruction" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">
+<div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
     Some heroes born with special skills and another not.
     Do you know what happen in Batman's live to make him
     who he is? Get information about what happened and where.
@@ -32,10 +32,10 @@
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
         </textarea>
-    <button type="submit" th:if="${isCorrect=='Neutral' or isCorrect=='Wrong'}">Write SQL query</button>
+    <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
 
-<div class="result" th:if="${isCorrect=='Correct'}">
+<div class="result" th:if="${answerStatus=='CorrectAnswer'}">
     <table>
         <thead th:each="hero: ${heroes}">
         <th th:if="${hero.getName()}">name</th>
@@ -74,13 +74,13 @@
     </table>
 </div>
 <div class="answer">
-    <div class="correctAnswer" th:if="${isCorrect=='Correct'}">
+    <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
         <form class="nextRound" th:action="@{/lvl3}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>
-    <div class="wrongAnswer" th:if="${isCorrect=='Wrong'}">
+    <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
         <p>Wrong. Try again player</p>
     </div>
 </div>
