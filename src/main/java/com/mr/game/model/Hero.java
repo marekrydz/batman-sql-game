@@ -13,6 +13,7 @@ public class Hero {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Column(name = "real_name")
     private String realName;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -22,7 +23,7 @@ public class Hero {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hero")
     private Set<Weapon> weapons;
 
-    @ManyToMany(mappedBy = "heroes")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "heroes")
     private Set<Enemy> enemies = new HashSet<>();
 
     public Hero() {
