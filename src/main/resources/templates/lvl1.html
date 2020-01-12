@@ -30,7 +30,7 @@
 
 <form class="sqlQuery" th:action="@{/lvl1}" method="POST">
         <textarea style="height:50px" cols="50"
-                  rows="5" type="text" name="sqlQuery">
+                  rows="5" type="text" name="sqlQuery">select * from heroes
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
@@ -44,33 +44,6 @@
         <tr th:each="hero: ${heroes}">
             <td th:text=" ${hero.getName()}"></td>
             <td th:text=" ${hero.getRealName()}"></td>
-    </table>
-    <table th:if="${becomeStories.size()}" border="2" class="becomeStories">
-        <thead>
-        <th>how</th>
-        <th>place</th>
-        </thead>
-        <tr th:each="becomeStory: ${becomeStories}">
-            <td th:text=" ${becomeStory.getHow()}"></td>
-            <td th:text=" ${becomeStory.getPlace()}"></td>
-    </table>
-    <table th:if="${weapons.size()}" border="2" class="weapons">
-        <thead>
-        <th>weapon name</th>
-        <th>characteristic</th>
-        </thead>
-        <tr th:each="weapon: ${weapons}">
-            <td th:text=" ${weapon.getWeaponName()}"></td>
-            <td th:text=" ${weapon.getCharacteristic()}"></td>
-    </table>
-    <table th:if="${enemies.size()}" border="2" class="enemies">
-        <thead>
-        <th>enemy nick</th>
-        <th>enemy real name</th>
-        </thead>
-        <tr th:each="enemy: ${enemies}">
-            <td th:text=" ${enemy.getNick()}"></td>
-            <td th:text=" ${enemy.getEnemyRealName()}"></td>
     </table>
 </div>
 <div class="answer">

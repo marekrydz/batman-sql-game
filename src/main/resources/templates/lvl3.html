@@ -31,6 +31,8 @@
 <form class="sqlQuery" th:action="@{/lvl3}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
+            Select * from heroes
+            full join  become_stories on heroes.become_story_id= become_stories.id
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
@@ -40,37 +42,41 @@
         <thead>
         <th>name</th>
         <th>realName</th>
-        </thead>
-        <tr th:each="hero: ${heroes}">
-            <td th:text=" ${hero.getName()}"></td>
-            <td th:if="${hero.getRealName()}" th:text=" ${hero.getRealName()}"></td>
-    </table>
-    <table class="becomeStories">
-        <thead>
         <th>how</th>
         <th>place</th>
         </thead>
-        <tr th:each="becomeStory: ${becomeStories}">
-            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getHow()}"></td>
-            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getPlace()}"></td>
+        <tr th:each="hero: ${heroes}">
+            <td th:text=" ${hero.getName()}"></td>
+            <td th:text=" ${hero.getRealName()}"></td>
+            <td th:text=" ${hero.getBecomeStory()?.getHow()}"></td>
+            <td th:text=" ${hero.getBecomeStory()?.getPlace()}"></td>
     </table>
-    <table class="weapons">
-        <thead th:each="weapon: ${weapons}">
-        <th th:text=" ${weapon.getWeaponName()}">weapon name</th>
-        <th th:text=" ${weapon.getWeaponName()}">characteristic</th>
-        </thead>
-        <tr th:each="weapon: ${weapons}">
-            <td th:text=" ${weapon.getWeaponName()}"></td>
-            <td th:text=" ${weapon.getCharacteristic()}"></td>
-    </table>
-    <table class="enemies">
-        <thead th:each="enemy: ${enemies}">
-        <th th:text=" ${enemy.getNick()}">enemy nick</th>
-        <th th:text=" ${enemy.getEnemyRealName()}">enemy real name</th>
-        </thead>
-        <tr th:each="enemy: ${enemies}">
-            <td th:text=" ${enemy.getNick()}"></td>
-            <td th:text=" ${enemy.getEnemyRealName()}"></td>
+<!--    <table class="becomeStories">-->
+<!--        <thead>-->
+<!--        <th>how</th>-->
+<!--        <th>place</th>-->
+<!--        </thead>-->
+<!--        <tr th:each="becomeStory: ${becomeStories}">-->
+<!--            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getHow()}"></td>-->
+<!--            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getPlace()}"></td>-->
+<!--    </table>-->
+<!--    <table class="weapons">-->
+<!--        <thead th:each="weapon: ${weapons}">-->
+<!--        <th th:text=" ${weapon.getWeaponName()}">weapon name</th>-->
+<!--        <th th:text=" ${weapon.getWeaponName()}">characteristic</th>-->
+<!--        </thead>-->
+<!--        <tr th:each="weapon: ${weapons}">-->
+<!--            <td th:text=" ${weapon.getWeaponName()}"></td>-->
+<!--            <td th:text=" ${weapon.getCharacteristic()}"></td>-->
+<!--    </table>-->
+<!--    <table class="enemies">-->
+<!--        <thead th:each="enemy: ${enemies}">-->
+<!--        <th th:text=" ${enemy.getNick()}">enemy nick</th>-->
+<!--        <th th:text=" ${enemy.getEnemyRealName()}">enemy real name</th>-->
+<!--        </thead>-->
+<!--        <tr th:each="enemy: ${enemies}">-->
+<!--            <td th:text=" ${enemy.getNick()}"></td>-->
+<!--            <td th:text=" ${enemy.getEnemyRealName()}"></td>-->
     </table>
 </div>
 <div class="answer">
