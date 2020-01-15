@@ -2,6 +2,9 @@ package com.mr.game.repository;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,7 @@ import java.util.List;
 @Component
 public class DbRepository {
 
+    SessionFactory sessionFactory;
     private DbConnection dbConnection = new DbConnection();
     public int numberOfRowsFromDB = 0;
     private String url;
@@ -34,7 +38,7 @@ public class DbRepository {
         Multimap<String, String> multiMap = ArrayListMultimap.create();
 
         try {
-            Statement stmt = dbConnection.connectToPostgreSQL(url, username, password);
+            Statement stmt = dbConnection.getConnectionToDb(url, username, password);
             rs = stmt.executeQuery(sqlQuery);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
@@ -59,7 +63,7 @@ public class DbRepository {
     }
 
     public boolean isResultSetsIdentical(String firstSqlQuery, String secondSqlQuery) {
-        Statement stmt = dbConnection.connectToPostgreSQL("jdbc:postgresql://localhost:5432/postgres", "postgres", "marek");
+        Statement stmt = dbConnection.getConnectionToDb("jdbc:postgresql://localhost:5432/postgres", "postgres", "marek");
         ResultSet resultSet;
         boolean isIdentical = false;
         try {
@@ -69,5 +73,13 @@ public class DbRepository {
             e.printStackTrace();
         }
         return isIdentical;
+    }
+
+    public List<Object> getObjectsListUsingHqlQuery(String hqlQuery){
+         sessionFactory = HibernateUtility.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Query qry= session.createQuery(hqlQuery);
+        List result = qry.list();
+        return result;
     }
 }
