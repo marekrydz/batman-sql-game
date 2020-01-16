@@ -17,6 +17,9 @@ public class Answer {
     @Column(name = "answer_sql")
     private String answerSql;
 
+    @Column(name = "answer_hql")
+    private String answerHql;
+
     public Answer() {
 
     }
@@ -43,6 +46,14 @@ public class Answer {
 
     public void setAnswerSql(String answerSql) {
         this.answerSql = answerSql;
+    }
+
+    public String getAnswerHql() {
+        return answerHql;
+    }
+
+    public void setAnswerHql(String answerHql) {
+        this.answerHql = answerHql;
     }
 
     @Override
