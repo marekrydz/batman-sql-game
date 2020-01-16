@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 //@SpringBootTest
@@ -18,6 +16,12 @@ import static org.junit.Assert.assertTrue;
 public class DbRepositoryTest {
     @Autowired
     private DbRepository dbRepository;
+
+    String getSpecificFiledFromHqlResult(List<Object> objectList, int rowNumber, int field) {
+        Object row[] = (Object[]) objectList.get(rowNumber);
+        String fieldValue = (String) row[field];
+        return fieldValue;
+    }
 
     @Test
     public void isResultSetsIdentical() {
@@ -27,9 +31,9 @@ public class DbRepositoryTest {
         String sqlQuery3 = "select * from heroes join become_stories bs on heroes.become_story_id = bs.id";
 
         //When
-        boolean result1 = dbRepository.isResultSetsIdentical(sqlQuery1,sqlQuery1);
-        boolean result2 = dbRepository.isResultSetsIdentical(sqlQuery1,sqlQuery2);
-        boolean result3 = dbRepository.isResultSetsIdentical(sqlQuery3,sqlQuery3);
+        boolean result1 = dbRepository.isResultSetsIdentical(sqlQuery1, sqlQuery1);
+        boolean result2 = dbRepository.isResultSetsIdentical(sqlQuery1, sqlQuery2);
+        boolean result3 = dbRepository.isResultSetsIdentical(sqlQuery3, sqlQuery3);
 
         //Then
         assertTrue(result1);
@@ -39,30 +43,32 @@ public class DbRepositoryTest {
 
     @Test
     public void getObjectsListUsingHqlQuery() {
+        //Given
         String hqlQuery1 = "select h.name, h.realName from Hero h where h.name='Batman'";
-//        select h.name, bs.how, bs.place from heroes as h
-//join become_stories bs on h.become_story_id = bs.id
-//where h.name= 'Batman
         String hqlQuery2 = "select h.name, bs.how, bs.place from Hero h join h.becomeStory bs where h.name='Batman'";
-
-//        Select * from heroes
-//full join  become_stories on heroes.become_story_id= become_stories.id
         String hqlQuery3 = "select h.name, h.realName, bs.how, bs.place from Hero h full join h.becomeStory bs";
-//select * from heroes as h join weapons w on h.id = w.hero_id
         String hqlQuery4 = "select h.name, h.realName, w.weaponName, w.characteristic from Hero h  join h.weapons w";
         String hqlQuery5 = "select h.name, h.realName, e.nick, e.enemyRealName from Hero h left join h.enemies e";
 
+        //When
         List<Object> result1 = dbRepository.getObjectsListUsingHqlQuery(hqlQuery1);
         List<Object> result2 = dbRepository.getObjectsListUsingHqlQuery(hqlQuery2);
         List<Object> result3 = dbRepository.getObjectsListUsingHqlQuery(hqlQuery3);
         List<Object> result4 = dbRepository.getObjectsListUsingHqlQuery(hqlQuery4);
         List<Object> result5 = dbRepository.getObjectsListUsingHqlQuery(hqlQuery5);
 
-        Iterator it=result5.iterator();
-        while(it.hasNext())
-        {
-            Object rows[] = (Object[])it.next();
-            System.out.println(rows[0]+ " -- " +rows[1]+" -- " +rows[2]+" -- " +rows[3]);
-        }
+        //Then
+         String filedFromResult1 =  getSpecificFiledFromHqlResult(result1,0,0);
+         String filedFromResult3 =  getSpecificFiledFromHqlResult(result3,1,3);
+         String filedFromResult5 =  getSpecificFiledFromHqlResult(result5,8,0);
+
+        assertEquals(1, result1.size());
+        assertEquals("Batman", filedFromResult1);
+        assertEquals(1, result2.size());
+        assertEquals(3, result3.size());
+        assertEquals("On the Gotham City streets", filedFromResult3);
+        assertEquals(4, result4.size());
+        assertEquals(9, result5.size());
+        assertEquals("Robin", filedFromResult5);
     }
 }
