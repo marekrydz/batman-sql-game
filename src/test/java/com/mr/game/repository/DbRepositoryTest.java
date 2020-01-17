@@ -11,13 +11,12 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest
 @ContextConfiguration(classes = {DbRepository.class})
 public class DbRepositoryTest {
     @Autowired
     private DbRepository dbRepository;
 
-    String getSpecificFiledFromHqlResult(List<Object> objectList, int rowNumber, int field) {
+    private String getSpecificFiledFromHqlResult(List<Object> objectList, int rowNumber, int field) {
         Object row[] = (Object[]) objectList.get(rowNumber);
         String fieldValue = (String) row[field];
         return fieldValue;

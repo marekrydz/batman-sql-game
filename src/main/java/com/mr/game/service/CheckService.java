@@ -21,7 +21,7 @@ public class CheckService {
     AnswerStatusEnum answerStatusEnum;
 
     public String isAnswerCorrect (int gameLvl, String playerSqlQuery){
-        String answerSql= answerService.getAnswerByGameLvl(gameLvl);
+        String answerSql = answerService.getSqlAnswerByGameLvl(gameLvl);
         boolean isCorrect = dbRepository.isResultSetsIdentical(answerSql,playerSqlQuery);
         if(isCorrect){
             return AnswerStatusEnum.CorrectAnswer.name();

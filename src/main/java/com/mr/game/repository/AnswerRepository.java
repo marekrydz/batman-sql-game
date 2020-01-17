@@ -11,5 +11,5 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     Answer getAnswerByGameLvl(int gameLvl);
 
     @Query(value = "select answer_hql from answers where id =?1", nativeQuery = true)
-    String getHqlQueryFromGameLvl(int gameLvl);
+    String getHqlQueryByGameLvl(int gameLvl);
 }
