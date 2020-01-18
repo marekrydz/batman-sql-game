@@ -45,15 +45,17 @@
         <th>nick</th>
         <th>enemy_real_name</th>
         </thead>
-        <tr th:each="sampleT: ${sampleTable}">
-            <td th:each="sT: ${sampleT}" th:text="${sT}"></td>
+        <tr th:each="answers: ${answerList}">
+            <td th:each="answer: ${answers}" th:text="${answer}"></td>
         </tr>
     </table>
 </div>
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <button class="nextRoundBtn">Go to next round</button>
+        <form class="nextRound" th:action="@{/lvl6}" method="GET">
+            <button class="nextRoundBtn">Go to next round</button>
+        </form>
     </div>
     <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
         <p>Wrong. Try again player</p>

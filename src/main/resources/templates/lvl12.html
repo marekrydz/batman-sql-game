@@ -19,16 +19,17 @@
     Let's meet his friends and check theirs way to become who they are.
     <br>
     <div class="mission">
-        MISSION: Get all information's from table heroes;
+        MISSION: Select all records from the heroes table,
+        sort the result reversed alphabetically by the column name.
         <br>
         TABLES: heroes
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl11}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl12}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-            select * from heroes
+            select * from heroes order by name desc
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
@@ -48,7 +49,7 @@
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl1}" method="GET">
+        <form class="nextRound" th:action="@{/lvl5}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>

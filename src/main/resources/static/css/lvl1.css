@@ -64,6 +64,13 @@ html {
     right: 76px;
 }
 
+.wrongAnswer {
+    color: #FF0000;
+    position: absolute;
+    top: 260px;
+    right: -5px;
+}
+
 .nextRoundBtn {
     position: absolute;
     top: 90px;
