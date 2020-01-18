@@ -45,44 +45,17 @@
         <th>how</th>
         <th>place</th>
         </thead>
-        <tr th:each="hero: ${heroes}">
-            <td th:text=" ${hero.getName()}"></td>
-            <td th:text=" ${hero.getRealName()}"></td>
-            <td th:text=" ${hero.getBecomeStory()?.getHow()}"></td>
-            <td th:text=" ${hero.getBecomeStory()?.getPlace()}"></td>
-    </table>
-<!--    <table class="becomeStories">-->
-<!--        <thead>-->
-<!--        <th>how</th>-->
-<!--        <th>place</th>-->
-<!--        </thead>-->
-<!--        <tr th:each="becomeStory: ${becomeStories}">-->
-<!--            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getHow()}"></td>-->
-<!--            <td th:if="${becomeStory.getPlace()}" th:text=" ${becomeStory.getPlace()}"></td>-->
-<!--    </table>-->
-<!--    <table class="weapons">-->
-<!--        <thead th:each="weapon: ${weapons}">-->
-<!--        <th th:text=" ${weapon.getWeaponName()}">weapon name</th>-->
-<!--        <th th:text=" ${weapon.getWeaponName()}">characteristic</th>-->
-<!--        </thead>-->
-<!--        <tr th:each="weapon: ${weapons}">-->
-<!--            <td th:text=" ${weapon.getWeaponName()}"></td>-->
-<!--            <td th:text=" ${weapon.getCharacteristic()}"></td>-->
-<!--    </table>-->
-<!--    <table class="enemies">-->
-<!--        <thead th:each="enemy: ${enemies}">-->
-<!--        <th th:text=" ${enemy.getNick()}">enemy nick</th>-->
-<!--        <th th:text=" ${enemy.getEnemyRealName()}">enemy real name</th>-->
-<!--        </thead>-->
-<!--        <tr th:each="enemy: ${enemies}">-->
-<!--            <td th:text=" ${enemy.getNick()}"></td>-->
-<!--            <td th:text=" ${enemy.getEnemyRealName()}"></td>-->
+        <tr th:each="answers: ${answerList}">
+            <td th:each="answer: ${answers}" th:text="${answer}"></td>
+        </tr>
     </table>
 </div>
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <button class="nextRoundBtn">Go to next round</button>
+        <form class="nextRound" th:action="@{/lvl4}" method="GET">
+            <button class="nextRoundBtn">Go to next round</button>
+        </form>
     </div>
     <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
         <p>Wrong. Try again player</p>

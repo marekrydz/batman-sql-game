@@ -11,11 +11,11 @@
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    INTRODUCTION
+    LEVEL I
 </div>
 
 
-<div class="instruction" th:if="${answerStatus=='Neutral'}">
+<div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
     Usually heroes hide behind the masks.
     They also have a normal live.
     Every body what's to know their personality. And you will.
@@ -35,15 +35,15 @@
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
 
-<div class="result">
+<div class="result" th:if="${answerStatus=='CorrectAnswer'}">
     <table>
         <thead>
         <th>name</th>
         <th>realName</th>
         </thead>
-        <tr th:each="hero: ${heroes}">
-            <td th:text=" ${hero.getName()}"></td>
-            <td th:text=" ${hero.getRealName()}"></td>
+        <tr th:each="answers: ${answerList}">
+            <td th:each="answer: ${answers}" th:text="${answer}"></td>
+        </tr>
     </table>
 </div>
 <div class="answer">
