@@ -15,6 +15,8 @@ public class Hero {
     private String name;
     @Column(name = "real_name")
     private String realName;
+    @Column(name = "power")
+    private int power;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "become_story_id", referencedColumnName = "id")
@@ -77,27 +79,43 @@ public class Hero {
         this.enemies = enemies;
     }
 
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hero hero = (Hero) o;
-        return Objects.equals(id, hero.id) &&
+        return power == hero.power &&
+                Objects.equals(id, hero.id) &&
                 Objects.equals(name, hero.name) &&
                 Objects.equals(realName, hero.realName) &&
-                Objects.equals(becomeStory, hero.becomeStory);
+                Objects.equals(becomeStory, hero.becomeStory) &&
+                Objects.equals(weapons, hero.weapons) &&
+                Objects.equals(enemies, hero.enemies);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, realName, becomeStory);
+        return Objects.hash(id, name, realName, power, becomeStory, weapons, enemies);
     }
 
     @Override
     public String toString() {
         return "Hero{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", realName='" + realName + '\'' +
+                ", power=" + power +
+                ", becomeStory=" + becomeStory +
+                ", weapons=" + weapons +
+                ", enemies=" + enemies +
                 '}';
     }
 }
