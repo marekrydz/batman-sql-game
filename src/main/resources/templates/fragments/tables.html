@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<table th:fragment="hero" class="heroes">
+    <thead>
+    <th>id</th>
+    <th>name</th>
+    <th>real_name</th>
+    <th>power</th>
+    </thead>
+    <tr th:each="answers: ${answerList}">
+        <td th:each="answer: ${answers}" th:text="${answer}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
