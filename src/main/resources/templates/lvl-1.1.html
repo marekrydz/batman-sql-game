@@ -14,7 +14,6 @@
     LEVEL I
 </div>
 
-
 <div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
     Usually heroes hide behind the masks.
     They also have a normal live.
@@ -28,28 +27,18 @@
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl1}" method="POST">
-        <textarea style="height:50px" cols="50"
-                  rows="5" type="text" name="sqlQuery">select * from heroes
-        </textarea>
+<form class="sqlQuery" th:action="@{/lvl-1.1}" method="POST">
+    <textarea style="height:50px" cols="50" rows="5" type="text" name="sqlQuery">select * from heroes</textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
 
 <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
-    <table>
-        <thead>
-        <th>name</th>
-        <th>realName</th>
-        </thead>
-        <tr th:each="answers: ${answerList}">
-            <td th:each="answer: ${answers}" th:text="${answer}"></td>
-        </tr>
-    </table>
+    <table th:insert="fragments/tables.html :: hero"></table>
 </div>
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl2}" method="GET">
+        <form class="nextRound" th:action="@{/lvl-1.2}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>

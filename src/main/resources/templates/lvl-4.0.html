@@ -9,8 +9,10 @@
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    LEVEL IV
+    LEVEL V
 </div>
+
+
 <div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
     It is difficult to fight alone with enemy who is very strong.
     Batman's has also friends which help him many times.
@@ -26,21 +28,24 @@
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl4}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl5}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-select * from heroes as h join weapons w on h.id = w.hero_id
+    select h.name, h.real_name, e.nick, e.enemy_real_name from  heroes h
+    inner join heroes_enemies  he on h.id = he.hero_id
+    inner join enemies e on e.id = he.enemy_id
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
+
 
 <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
     <table>
         <thead>
         <th>name</th>
         <th>real_name</th>
-        <th>weapons_names</th>
-        <th>characteristic</th>
+        <th>nick</th>
+        <th>enemy_real_name</th>
         </thead>
         <tr th:each="answers: ${answerList}">
             <td th:each="answer: ${answers}" th:text="${answer}"></td>
@@ -50,13 +55,12 @@ select * from heroes as h join weapons w on h.id = w.hero_id
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl5}" method="GET">
+        <form class="nextRound" th:action="@{/lvl6}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>
     <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
         <p>Wrong. Try again player</p>
-
     </div>
 </div>
 </body>

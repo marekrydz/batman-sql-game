@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" th:href="@{/css/lvl3.css}"/>
+
+</head>
+
+<body>
+<div class="title" style="font-family: 'BatmanForeverAlternate'">
+    LEVEL IV
+</div>
+<div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
+    It is difficult to fight alone with enemy who is very strong.
+    Batman's has also friends which help him many times.
+    Let's meet his friends and check theirs way to become who they are.
+    <br>
+    <div class="mission">
+        MISSION: Get all heroes names, real_names, how and place;
+        IMPORTANT: Choose query which show all heroes even them which do not
+        have become_story
+        <br>
+        TABLES: heroes (name, real_name),
+        become_stories(how, place)
+    </div>
+</div>
+
+<form class="sqlQuery" th:action="@{/lvl-3.0}" method="POST">
+        <textarea style="height:70px" cols="55"
+                  rows="5" type="text" name="sqlQuery">
+select * from heroes as h join weapons w on h.id = w.hero_id
+        </textarea>
+    <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
+</form>
+
+<div class="result" th:if="${answerStatus=='CorrectAnswer'}">
+    <table>
+        <thead>
+        <th>name</th>
+        <th>real_name</th>
+        <th>weapons_names</th>
+        <th>characteristic</th>
+        </thead>
+        <tr th:each="answers: ${answerList}">
+            <td th:each="answer: ${answers}" th:text="${answer}"></td>
+        </tr>
+    </table>
+</div>
+<div class="answer">
+    <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
+        <p>Great it is correct answer</p>
+        <form class="nextRound" th:action="@{/lvl-4.0}" method="GET">
+            <button class="nextRoundBtn">Go to next round</button>
+        </form>
+    </div>
+    <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
+        <p>Wrong. Try again player</p>
+
+    </div>
+</div>
+</body>
+</html>

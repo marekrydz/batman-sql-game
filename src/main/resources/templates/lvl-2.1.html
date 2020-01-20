@@ -2,43 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-
-    <link rel="stylesheet" th:href="@{/css/lvl3.css}"/>
-
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <link rel="stylesheet" th:href="@{/css/lvl2.css}"/>
 </head>
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    LEVEL 11
+    LEVEL II
 </div>
 
 
 <div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
-    It is difficult to fight alone with enemy who is very strong.
-    Batman's has also friends which help him many times.
-    Let's meet his friends and check theirs way to become who they are.
+    Some heroes born with special skills and another not.
+    Do you know what happen in Batman's live to make him
+    who he is? Get information about what happened and where.
     <br>
     <div class="mission">
-        MISSION: Get all information's from table heroes;
+        MISSION: get Batman name, how and place
         <br>
-        TABLES: heroes
+        TABLES: heroes (name, real_name),
+        become_stories(how, place)
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl11}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl-2.1}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-            select * from heroes
+            select h.name, bs.how, bs.place from heroes as h
+            join become_stories bs on h.become_story_id = bs.id where h.name= 'Batman'
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
-
 
 <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
     <table>
         <thead>
         <th>name</th>
-        <th>real_name</th>
+        <th>place</th>
+        <th>how</th>
         </thead>
         <tr th:each="answers: ${answerList}">
             <td th:each="answer: ${answers}" th:text="${answer}"></td>
@@ -48,7 +49,7 @@
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl1}" method="GET">
+        <form class="nextRound" th:action="@{/lvl-3.0}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>

@@ -9,7 +9,7 @@
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    LEVEL 11
+    LEVEL III
 </div>
 
 
@@ -19,27 +19,31 @@
     Let's meet his friends and check theirs way to become who they are.
     <br>
     <div class="mission">
-        MISSION: Select all records from the heroes table,
-        sort the result reversed alphabetically by the column name.
+        MISSION: Get all heroes names, real_names, how and place;
+        IMPORTANT: Choose query which show all heroes even them which do not
+        have become_story
         <br>
-        TABLES: heroes
+        TABLES: heroes (name, real_name),
+        become_stories(how, place)
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl12}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl-2.0}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-            select * from heroes order by name desc
+            Select * from heroes
+            full join  become_stories on heroes.become_story_id= become_stories.id
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
-
 
 <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
     <table>
         <thead>
         <th>name</th>
-        <th>real_name</th>
+        <th>realName</th>
+        <th>how</th>
+        <th>place</th>
         </thead>
         <tr th:each="answers: ${answerList}">
             <td th:each="answer: ${answers}" th:text="${answer}"></td>
@@ -49,7 +53,7 @@
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl5}" method="GET">
+        <form class="nextRound" th:action="@{/lvl-2.1}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>

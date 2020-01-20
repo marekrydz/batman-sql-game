@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" th:href="@{/css/lvl1.css}"/>
+
+</head>
+
+<body>
+<div class="title" style="font-family: 'BatmanForeverAlternate'">
+    LEVEL 11
+</div>
+
+
+<div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
+    It is difficult to fight alone with enemy who is very strong.
+    Batman's has also friends which help him many times.
+    Let's meet his friends and check theirs way to become who they are.
+    <br>
+    <div class="mission">
+        MISSION: Select all records where the value of the real_name column starts with the letter "S"
+        <br>
+        TABLES: heroes
+    </div>
+</div>
+
+<form class="sqlQuery" th:action="@{/lvl-1.2}" method="POST">
+        <textarea style="height:70px" cols="55"
+                  rows="5" type="text" name="sqlQuery">
+select * from heroes where real_name like 'S%'
+        </textarea>
+    <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
+</form>
+
+
+<div class="result" th:if="${answerStatus=='CorrectAnswer'}">
+    <table th:insert="fragments/tables.html :: hero"></table>
+</div>
+<div class="answer">
+    <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
+        <p>Great it is correct answer</p>
+        <form class="nextRound" th:action="@{/lvl-1.3}" method="GET">
+            <button class="nextRoundBtn">Go to next round</button>
+        </form>
+    </div>
+    <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
+        <p>Wrong. Try again player</p>
+    </div>
+</div>
+</body>
+</html>

@@ -13,15 +13,15 @@ import java.util.List;
 @Component
 public class DbRepository {
 
-    private SessionFactory sessionFactory;
     private DbConnection dbConnection = new DbConnection();
 
-    public boolean isResultSetsIdentical(String firstSqlQuery, String secondSqlQuery) {
+    public boolean isResultOfSqlQueriesIdentical(String firstSqlQuery, String secondSqlQuery) {
         Statement stmt = dbConnection.getConnectionToDb("jdbc:postgresql://localhost:5432/postgres", "postgres", "marek");
         ResultSet resultSet;
         boolean isIdentical = false;
         try {
-            resultSet = stmt.executeQuery( firstSqlQuery + " except " + secondSqlQuery);
+            String queryToExecute = firstSqlQuery + " except " + secondSqlQuery;
+            resultSet = stmt.executeQuery(queryToExecute);
             isIdentical = !resultSet.isBeforeFirst();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,10 +30,9 @@ public class DbRepository {
     }
 
     public List<Object> getObjectsListUsingHqlQuery(String hqlQuery){
-        sessionFactory = HibernateUtility.getSessionFactory();
+        SessionFactory sessionFactory = HibernateUtility.getSessionFactory();
         Session session = sessionFactory.openSession();
         Query qry= session.createQuery(hqlQuery);
-        List result = qry.list();
-        return result;
+        return qry.list();
     }
 }

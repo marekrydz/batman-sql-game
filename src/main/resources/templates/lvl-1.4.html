@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" th:href="@{/css/lvl3.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lvl1.css}"/>
 
 </head>
 
 <body>
 <div class="title" style="font-family: 'BatmanForeverAlternate'">
-    LEVEL V
+    LEVEL 14
 </div>
 
 
@@ -19,41 +19,29 @@
     Let's meet his friends and check theirs way to become who they are.
     <br>
     <div class="mission">
-        MISSION: Get all heroes names, real_names, how and place;
-        IMPORTANT: Choose query which show all heroes even them which do not
-        have become_story
+        MISSION:Use the BETWEEN operator to select all the records where
+        the value of the Hero column is between 20 and 90..
         <br>
-        TABLES: heroes (name, real_name),
-        become_stories(how, place)
+        TABLES: heroes
     </div>
 </div>
 
-<form class="sqlQuery" th:action="@{/lvl5}" method="POST">
+<form class="sqlQuery" th:action="@{/lvl-1.4}" method="POST">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
-            select * from heroes as h join weapons w on h.id = w.hero_id
+select * from heroes h where h.power between 20 AND 80;
         </textarea>
     <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
 </form>
 
 
 <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
-    <table>
-        <thead>
-        <th>name</th>
-        <th>real_name</th>
-        <th>nick</th>
-        <th>enemy_real_name</th>
-        </thead>
-        <tr th:each="answers: ${answerList}">
-            <td th:each="answer: ${answers}" th:text="${answer}"></td>
-        </tr>
-    </table>
+    <table th:insert="fragments/tables.html :: hero"></table>
 </div>
 <div class="answer">
     <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
         <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl6}" method="GET">
+        <form class="nextRound" th:action="@{/lvl-2.0}" method="GET">
             <button class="nextRoundBtn">Go to next round</button>
         </form>
     </div>
