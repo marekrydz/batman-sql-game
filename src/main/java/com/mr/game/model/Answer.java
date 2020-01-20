@@ -12,7 +12,7 @@ public class Answer {
     private Long id;
 
     @Column(name = "game_lvl")
-    private int gameLvl;
+    private String gameLvl;
 
     @Column(name = "answer_sql")
     private String answerSql;
@@ -32,11 +32,11 @@ public class Answer {
         this.id = id;
     }
 
-    public int getGameLvl() {
+    public String getGameLvl() {
         return gameLvl;
     }
 
-    public void setGameLvl(int gameLvl) {
+    public void setGameLvl(String gameLvl) {
         this.gameLvl = gameLvl;
     }
 
@@ -61,22 +61,24 @@ public class Answer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Answer answer = (Answer) o;
-        return gameLvl == answer.gameLvl &&
-                Objects.equals(id, answer.id) &&
-                Objects.equals(this.answerSql, answer.answerSql);
+        return Objects.equals(id, answer.id) &&
+                Objects.equals(gameLvl, answer.gameLvl) &&
+                Objects.equals(answerSql, answer.answerSql) &&
+                Objects.equals(answerHql, answer.answerHql);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, gameLvl, answerSql);
+        return Objects.hash(id, gameLvl, answerSql, answerHql);
     }
 
     @Override
     public String toString() {
         return "Answer{" +
                 "id=" + id +
-                ", gameLvl=" + gameLvl +
+                ", gameLvl='" + gameLvl + '\'' +
                 ", answerSql='" + answerSql + '\'' +
+                ", answerHql='" + answerHql + '\'' +
                 '}';
     }
 }

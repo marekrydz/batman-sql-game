@@ -17,11 +17,11 @@ public class AnswerService {
     @Resource
     DbRepository dbRepository;
 
-    public String getSqlAnswerByGameLvl(int gameLvl) {
+    public String getSqlAnswerByGameLvl(String gameLvl) {
         return answerRepository.getAnswerByGameLvl(gameLvl).getAnswerSql();
     }
 
-    public List<Object> getCorrectAnswer(int gameLvl) {
+    public List<Object> getCorrectAnswer(String gameLvl) {
         String hqlQuery = answerRepository.getHqlQueryByGameLvl(gameLvl);
         List<Object> result = dbRepository.getObjectsListUsingHqlQuery(hqlQuery);
         return result;

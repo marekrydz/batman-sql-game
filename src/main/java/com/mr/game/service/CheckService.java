@@ -20,9 +20,9 @@ public class CheckService {
     @Enumerated(EnumType.STRING)
     AnswerStatusEnum answerStatusEnum;
 
-    public String isAnswerCorrect (int gameLvl, String playerSqlQuery){
+    public String isAnswerCorrect(String gameLvl, String playerSqlQuery) {
         String answerSql = answerService.getSqlAnswerByGameLvl(gameLvl);
-        boolean isCorrect = dbRepository.isResultSetsIdentical(answerSql,playerSqlQuery);
+        boolean isCorrect = dbRepository.isResultOfSqlQueriesIdentical(answerSql, playerSqlQuery);
         if(isCorrect){
             return AnswerStatusEnum.CorrectAnswer.name();
         }
