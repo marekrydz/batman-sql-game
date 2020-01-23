@@ -36,5 +36,6 @@ dependencies {
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.5'
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
+    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
+    
 }
