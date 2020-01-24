@@ -1,14 +1,18 @@
 package com.mr.game.repository;
 
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
 
+@Component
 public class DbConnection {
     public Connection conn = null;
+
     public Statement getConnectionToDb(String DbURL, String user, String password) {
         Statement statement = null;
         try {

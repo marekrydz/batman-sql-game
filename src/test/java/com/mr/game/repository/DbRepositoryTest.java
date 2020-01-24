@@ -30,9 +30,9 @@ public class DbRepositoryTest {
         String sqlQuery3 = "select * from heroes join become_stories bs on heroes.become_story_id = bs.id";
 
         //When
-        boolean result1 = dbRepository.isResultSetsIdentical(sqlQuery1, sqlQuery1);
-        boolean result2 = dbRepository.isResultSetsIdentical(sqlQuery1, sqlQuery2);
-        boolean result3 = dbRepository.isResultSetsIdentical(sqlQuery3, sqlQuery3);
+        boolean result1 = dbRepository.isResultOfSqlQueriesIdentical(sqlQuery1, sqlQuery1);
+        boolean result2 = dbRepository.isResultOfSqlQueriesIdentical(sqlQuery1, sqlQuery2);
+        boolean result3 = dbRepository.isResultOfSqlQueriesIdentical(sqlQuery3, sqlQuery3);
 
         //Then
         assertTrue(result1);
