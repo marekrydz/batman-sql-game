@@ -10,19 +10,36 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("level")
 public class LevelDescription {
 
-    private String instruction1x0;
-
+    private String info1x0;
     private String mission1x0;
+    private String info1x1;
+    private String mission1x1;
+    private String info1x2;
+    private String mission1x2;
+    private String info1x3;
+    private String mission1x3;
+    private String info1x4;
+    private String mission1x4;
+    private String info2x0;
+    private String mission2x0;
+    private String info2x1;
+    private String mission2x1;
+    private String info3x0;
+    private String mission3x0;
+    private String info4x0;
+    private String mission4x0;
 
-    //getters and setters
+    //Tables
+    private String heroTable;
+    private String heroNameRealNameTable;
+    private String heroNameRealNameBecomeStoriesHowPlaceTable;
 
-
-    public String getInstruction1x0() {
-        return instruction1x0;
+    public String getInfo1x0() {
+        return info1x0;
     }
 
-    public void setInstruction1x0(String instruction1x0) {
-        this.instruction1x0 = instruction1x0;
+    public void setInfo1x0(String info1x0) {
+        this.info1x0 = info1x0;
     }
 
     public String getMission1x0() {
@@ -31,5 +48,157 @@ public class LevelDescription {
 
     public void setMission1x0(String mission1x0) {
         this.mission1x0 = mission1x0;
+    }
+
+    public String getInfo1x1() {
+        return info1x1;
+    }
+
+    public void setInfo1x1(String info1x1) {
+        this.info1x1 = info1x1;
+    }
+
+    public String getMission1x1() {
+        return mission1x1;
+    }
+
+    public void setMission1x1(String mission1x1) {
+        this.mission1x1 = mission1x1;
+    }
+
+    public String getInfo1x2() {
+        return info1x2;
+    }
+
+    public void setInfo1x2(String info1x2) {
+        this.info1x2 = info1x2;
+    }
+
+    public String getMission1x2() {
+        return mission1x2;
+    }
+
+    public void setMission1x2(String mission1x2) {
+        this.mission1x2 = mission1x2;
+    }
+
+    public String getInfo1x3() {
+        return info1x3;
+    }
+
+    public void setInfo1x3(String info1x3) {
+        this.info1x3 = info1x3;
+    }
+
+    public String getMission1x3() {
+        return mission1x3;
+    }
+
+    public void setMission1x3(String mission1x3) {
+        this.mission1x3 = mission1x3;
+    }
+
+    public String getInfo1x4() {
+        return info1x4;
+    }
+
+    public void setInfo1x4(String info1x4) {
+        this.info1x4 = info1x4;
+    }
+
+    public String getMission1x4() {
+        return mission1x4;
+    }
+
+    public void setMission1x4(String mission1x4) {
+        this.mission1x4 = mission1x4;
+    }
+
+    public String getInfo2x0() {
+        return info2x0;
+    }
+
+    public void setInfo2x0(String info2x0) {
+        this.info2x0 = info2x0;
+    }
+
+    public String getMission2x0() {
+        return mission2x0;
+    }
+
+    public void setMission2x0(String mission2x0) {
+        this.mission2x0 = mission2x0;
+    }
+
+    public String getInfo2x1() {
+        return info2x1;
+    }
+
+    public void setInfo2x1(String info2x1) {
+        this.info2x1 = info2x1;
+    }
+
+    public String getMission2x1() {
+        return mission2x1;
+    }
+
+    public void setMission2x1(String mission2x1) {
+        this.mission2x1 = mission2x1;
+    }
+
+    public String getInfo3x0() {
+        return info3x0;
+    }
+
+    public void setInfo3x0(String info3x0) {
+        this.info3x0 = info3x0;
+    }
+
+    public String getMission3x0() {
+        return mission3x0;
+    }
+
+    public void setMission3x0(String mission3x0) {
+        this.mission3x0 = mission3x0;
+    }
+
+    public String getInfo4x0() {
+        return info4x0;
+    }
+
+    public void setInfo4x0(String info4x0) {
+        this.info4x0 = info4x0;
+    }
+
+    public String getMission4x0() {
+        return mission4x0;
+    }
+
+    public void setMission4x0(String mission4x0) {
+        this.mission4x0 = mission4x0;
+    }
+
+    public String getHeroTable() {
+        return heroTable;
+    }
+
+    public void setHeroTable(String heroTable) {
+        this.heroTable = heroTable;
+    }
+
+    public String getHeroNameRealNameTable() {
+        return heroNameRealNameTable;
+    }
+
+    public void setHeroNameRealNameTable(String heroNameRealNameTable) {
+        this.heroNameRealNameTable = heroNameRealNameTable;
+    }
+
+    public String getHeroNameRealNameBecomeStoriesHowPlaceTable() {
+        return heroNameRealNameBecomeStoriesHowPlaceTable;
+    }
+
+    public void setHeroNameRealNameBecomeStoriesHowPlaceTable(String heroNameRealNameBecomeStoriesHowPlaceTable) {
+        this.heroNameRealNameBecomeStoriesHowPlaceTable = heroNameRealNameBecomeStoriesHowPlaceTable;
     }
 }

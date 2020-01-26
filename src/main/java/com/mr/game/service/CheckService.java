@@ -22,10 +22,10 @@ public class CheckService {
 
     public String isAnswerCorrect(String gameLvl, String playerSqlQuery) {
         String answerSql = answerService.getSqlAnswerByGameLvl(gameLvl);
-        boolean isCorrect = dbRepository.isResultOfSqlQueriesIdentical(answerSql, playerSqlQuery);
+        boolean isCorrect = dbRepository.isResultOfSqlQueriesIdentical(playerSqlQuery, answerSql);
         if(isCorrect){
-            return AnswerStatusEnum.CorrectAnswer.name();
+            return answerStatusEnum.CorrectAnswer.name();
         }
-        return AnswerStatusEnum.WrongAnswer.name();
+        return answerStatusEnum.WrongAnswer.name();
     }
 }
