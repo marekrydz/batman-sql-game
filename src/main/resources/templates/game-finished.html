@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Instruction</title>
+    <link rel="stylesheet" th:href="@{/css/game-finished.css}"/>
+
+</head>
+<body>
+<div class="container">
+    <div class="congratulation-text">
+        Congratulation you finish the game:)
+        I hope you enjoy it.
+        Now you can back to "About me" site or start game from beginning
+    </div>
+    <button id="back-to-main-btn" onclick="location.href = 'https://mr-mysite.herokuapp.com/'">
+        Back to "About me" site
+    </button>
+    <button id="start-again-btn" onclick="location.href = '/lvl-1.0'">
+        Start from beginning
+    </button>
+    <div class="madeBy">
+        <p>MADE BY MR</p>
+    </div>
+</div>
+</body>
+</html>
