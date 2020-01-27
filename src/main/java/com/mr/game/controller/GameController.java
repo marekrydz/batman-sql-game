@@ -1,6 +1,7 @@
 package com.mr.game.controller;
 
 import com.mr.game.model.AnswerStatusEnum;
+import com.mr.game.model.LevelDescription;
 import com.mr.game.service.AnswerService;
 import com.mr.game.service.CheckService;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,13 @@ public class GameController {
     @Resource
     CheckService checkService;
 
+    @Resource
+    LevelDescription levelDescription;
+
     private String answerStatus;
+    private String info;
+    private String mission;
+    private String tableDescription;
 
     @Resource
     AnswerService answerService;
@@ -40,13 +47,19 @@ public class GameController {
     }
 
     @GetMapping("/lvl-1.0")
-    public String getLvl11(Model model) {
+    public String getLvl1(Model model) {
+        info = levelDescription.getInfo1x0();
+        mission = levelDescription.getMission1x0();
+        tableDescription = levelDescription.getHeroTable();
         model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-1.0";
     }
 
     @PostMapping("/lvl-1.0")
-    public String postLvl11(Model model, @RequestParam String sqlQuery) {
+    public String postLvl1(Model model, @RequestParam String sqlQuery) {
         answerStatus = checkService.isAnswerCorrect("1.0", sqlQuery);
         List<Object> answerList = new ArrayList<>();
         if (answerStatus.equals("CorrectAnswer")) {
@@ -55,17 +68,26 @@ public class GameController {
 
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-1.0";
     }
 
     @GetMapping("/lvl-1.1")
-    public String getLvl1(Model model) {
+    public String getLvl11(Model model) {
+        info = levelDescription.getInfo1x1();
+        mission = levelDescription.getMission1x1();
+        tableDescription = levelDescription.getHeroTable();
         model.addAttribute("answerStatus", "Neutral");
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-1.1";
     }
 
     @PostMapping("/lvl-1.1")
-    public String postLvl1(Model model, @RequestParam String sqlQuery) {
+    public String postLvl11(Model model, @RequestParam String sqlQuery) {
         answerStatus = checkService.isAnswerCorrect("1.1", sqlQuery);
         List<Object> answerList = null;
         if (answerStatus.equals("CorrectAnswer")) {
@@ -74,12 +96,22 @@ public class GameController {
 
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-1.1";
     }
 
     @GetMapping("/lvl-1.2")
     public String getLvl12(Model model) {
+        info = levelDescription.getInfo1x2();
+        mission = levelDescription.getMission1x2();
+        tableDescription = levelDescription.getHeroTable();
         model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-1.2";
     }
 
@@ -93,12 +125,22 @@ public class GameController {
 
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-1.2";
     }
 
     @GetMapping("/lvl-1.3")
     public String getLvl13(Model model) {
+        info = levelDescription.getInfo1x3();
+        mission = levelDescription.getMission1x3();
+        tableDescription = levelDescription.getHeroTable();
         model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-1.3";
     }
 
@@ -112,12 +154,21 @@ public class GameController {
 
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-1.3";
     }
 
     @GetMapping("/lvl-1.4")
     public String getLvl14(Model model) {
-        model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        info = levelDescription.getInfo1x4();
+        mission = levelDescription.getMission1x4();
+        tableDescription = levelDescription.getHeroTable();
+        model.addAttribute("answerStatus", "Neutral");
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-1.4";
     }
 
@@ -128,15 +179,23 @@ public class GameController {
         if (answerStatus.equals("CorrectAnswer")) {
             answerList = answerService.getCorrectAnswer("1.4");
         }
-
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-1.4";
     }
 
     @GetMapping("/lvl-2.0")
     public String getLvl3(Model model) {
-        model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        info = levelDescription.getInfo2x0();
+        mission = levelDescription.getMission2x0();
+        tableDescription = levelDescription.getHeroTable();
+        model.addAttribute("answerStatus", "Neutral");
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-2.0";
     }
 
@@ -147,15 +206,23 @@ public class GameController {
         if (answerStatus.equals("CorrectAnswer")) {
             answerList = answerService.getCorrectAnswer("2.0");
         }
-
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-2.0";
     }
 
     @GetMapping("/lvl-2.1")
     public String getLvl2(Model model) {
-        model.addAttribute("answerStatus", AnswerStatusEnum.Neutral.name());
+        info = levelDescription.getInfo2x1();
+        mission = levelDescription.getMission2x1();
+        tableDescription = levelDescription.getHeroTable();
+        model.addAttribute("answerStatus", "Neutral");
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-2.1";
     }
 
@@ -166,15 +233,23 @@ public class GameController {
         if (answerStatus.equals("CorrectAnswer")) {
             answerList = answerService.getCorrectAnswer("2.1");
         }
-
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-2.1";
     }
 
     @GetMapping("/lvl-3.0")
     public String getLvl4(Model model) {
+        info = levelDescription.getInfo3x0();
+        mission = levelDescription.getMission3x0();
+        tableDescription = levelDescription.getHeroTable();
         model.addAttribute("answerStatus", "Neutral");
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-3.0";
     }
 
@@ -187,12 +262,21 @@ public class GameController {
         }
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-3.0";
     }
 
     @GetMapping("/lvl-4.0")
     public String getLvl5(Model model) {
+        info = levelDescription.getInfo4x0();
+        mission = levelDescription.getMission4x0();
+        tableDescription = levelDescription.getHeroTable();
         model.addAttribute("answerStatus", "Neutral");
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("tableDescription", tableDescription);
         return "lvl-4.0";
     }
 
@@ -205,50 +289,15 @@ public class GameController {
         }
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
+        model.addAttribute("info", info);
+        model.addAttribute("mission", mission);
+        model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-4.0";
     }
-}
 
-//
-//    private void isAnswerCorrectTest() {
-//        //Given
-//        String lvl = "14";
-//        Answer answer = answerRepository.getAnswerByGameLvl(lvl);
-//
-//        Statement stmt = dbConnection.getConnectionToDb("jdbc:postgresql://localhost:5432/postgres", "postgres", "marek");
-//        ResultSet resultSet;
-//
-//        try {
-//            String sqlQueryFromDB = answer.getAnswerSql();
-//            resultSet = stmt.executeQuery(sqlQueryFromDB);
-//            ResultSetMetaData rsmd = resultSet.getMetaData();
-//            int columnsNumber = rsmd.getColumnCount();
-//            System.out.println("*****Result from sql query*****");
-//            while (resultSet.next()) {
-//                for (int i = 1; i <= columnsNumber; i++) {
-//                    if (i > 1) ;
-//                    String columnValue = resultSet.getString(i);
-//                    System.out.print(columnValue + "--");
-//                }
-//                System.out.println("");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        SessionFactory factory = HibernateUtility.getSessionFactory();
-//        Session session = factory.openSession();
-//
-////        rows[0]+ " -- " +rows[1] + "--"+rows[2]+"--"+rows[3]
-//        Query qry = session.createQuery(answer.getAnswerHql());
-//        List l = qry.list();
-//        Iterator it = l.iterator();
-//        System.out.println("*****Result from HQL query*****");
-//        while (it.hasNext()) {
-//            Object rows[] = (Object[]) it.next();
-//            System.out.println(rows[0] + " -- " + rows[1] + rows[2] + " -- " + rows[3]);
-//        }
-//        session.clear();
-//        session.close();
-//
-//    }
+    @GetMapping("/game-finished")
+    public String gameFinished(Model model) {
+
+        return "game-finished";
+    }
+}
