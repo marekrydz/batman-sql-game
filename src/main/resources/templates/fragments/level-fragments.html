@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<div th:fragment="info" class="info" th:text="${info}"
+     th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}"></div>
+<div th:fragment="mission" class="mission" th:text="${mission}"
+     th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}"></div>
+<div th:fragment="table-description" class="table-description" th:text="${tableDescription}"
+     th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}"></div>
+<div th:fragment="player-correct-answer" class="player-answer" th:text="${'Your answer: '+playerAnswer}"
+     th:if="${answerStatus=='CorrectAnswer'}"></div>
+<div th:fragment="player-wrong-answer" class="player-answer" th:text="${'Your answer: '+playerAnswer}"
+     th:if="${answerStatus=='WrongAnswer'}"></div>
+
+<table th:fragment="hero-table" class="hero-table">
+    <thead>
+    <th>id</th>
+    <th>name</th>
+    <th>real_name</th>
+    <th>power</th>
+    </thead>
+    <tr th:each="answers: ${answerList}">
+        <td th:each="answer: ${answers}" th:text="${answer}"></td>
+    </tr>
+</table>
+</body>
+</html>

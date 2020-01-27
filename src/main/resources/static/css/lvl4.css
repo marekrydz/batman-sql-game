@@ -1,7 +1,7 @@
 @import "level-style.css";
 
 html {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url("../images/batman-become.jpg") no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url("../images/batman-enemies.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -18,29 +18,29 @@ html {
 /*    color: rgba(195, 201, 193, 0.76)*/
 /*}*/
 
-/*.info,*/
-/*.mission,*/
-/*.table-description{*/
+/*.info {*/
 /*    float: left;*/
 /*    box-sizing: border-box;*/
+/*}*/
+
+/*.info {*/
 /*    font-family: Courier, monospace;*/
 /*    color: #ffffff;*/
 /*    height: 30%;*/
 /*    width: 46%;*/
-/*    font-size: 20px;*/
+/*    font-size: 22px;*/
 /*    font-weight: bolder;*/
-/*    margin-left: 50%;*/
+/*    margin-left: 3%;*/
 /*}*/
 
 /*.sqlQuery {*/
 /*    height: 30%;*/
 /*    width: 46%;*/
-/*    margin-left: 50%;*/
-/*    margin-top: 150px;*/
+/*    margin-left: 3%;*/
+/*    margin-top: 316px;*/
 /*}*/
 
-/*.mission,*/
-/*.table-description{*/
+/*.mission {*/
 /*    color: #fff35d;*/
 /*    margin-top: 20px;*/
 /*    margin-bottom: 10px;*/
@@ -48,6 +48,9 @@ html {
 
 /*.result {*/
 /*    display: flex;*/
+/*    position: absolute;*/
+/*    top: 164px;*/
+/*    right: 12px;*/
 /*}*/
 
 /*th, td {*/
@@ -55,11 +58,12 @@ html {
 /*}*/
 
 /*.result, th, td {*/
-/*    font-size: 18px;*/
+/*    font-size: 21px;*/
+/*    font-weight: bold;*/
 /*    color: #f2f7f9;*/
 /*    width: fit-content;*/
-/*    margin-left: 35%;*/
-/*    margin-top: 20px;*/
+/*    margin-left: 6%;*/
+/*    margin-top: 59px;*/
 /*}*/
 
 /*.answer {*/
@@ -77,9 +81,10 @@ html {
 /*.wrongAnswer {*/
 /*    color: #FF0000;*/
 /*    position: absolute;*/
-/*    top: 310px;*/
-/*    right: 13px;*/
+/*    top: 79px;*/
+/*    right: -5px;*/
 /*}*/
+
 /*.nextRoundBtn {*/
 /*    position: absolute;*/
 /*    top: 90px;*/

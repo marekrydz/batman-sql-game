@@ -7,54 +7,51 @@
 </head>
 
 <body>
-<div class="title" style="font-family: 'BatmanForeverAlternate'">
-    LEVEL II
-</div>
-
-
-<div class="instruction" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
-    Some heroes born with special skills and another not.
-    Do you know what happen in Batman's live to make him
-    who he is? Get information about what happened and where.
-    <br>
-    <div class="mission">
-        MISSION: get Batman name, how and place
-        <br>
-        TABLES: heroes (name, real_name),
-        become_stories(how, place)
+<div class="container">
+    <div class="title" style="font-family: 'BatmanForeverAlternate'">
+        LEVEL 2.1
     </div>
-</div>
 
-<form class="sqlQuery" th:action="@{/lvl-2.1}" method="POST">
+
+    <div th:replace="fragments/level-fragments.html :: info"></div>
+    <div th:replace="fragments/level-fragments.html :: mission"></div>
+    <div th:replace="fragments/level-fragments.html :: table-description"></div>
+
+    <form class="sqlQuery" th:action="@{/lvl-2.1}" method="POST"
+          th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
         <textarea style="height:70px" cols="55"
                   rows="5" type="text" name="sqlQuery">
             select h.name, bs.how, bs.place from heroes as h
             join become_stories bs on h.become_story_id = bs.id where h.name= 'Batman'
         </textarea>
-    <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
-</form>
+        <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
+    </form>
 
-<div class="result" th:if="${answerStatus=='CorrectAnswer'}">
-    <table>
-        <thead>
-        <th>name</th>
-        <th>place</th>
-        <th>how</th>
-        </thead>
-        <tr th:each="answers: ${answerList}">
-            <td th:each="answer: ${answers}" th:text="${answer}"></td>
-        </tr>
-    </table>
-</div>
-<div class="answer">
-    <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
-        <p>Great it is correct answer</p>
-        <form class="nextRound" th:action="@{/lvl-3.0}" method="GET">
-            <button class="nextRoundBtn">Go to next round</button>
-        </form>
+    <div th:replace="fragments/level-fragments.html :: player-correct-answer"></div>
+
+    <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
+        <table>
+            <thead>
+            <th>name</th>
+            <th>place</th>
+            <th>how</th>
+            </thead>
+            <tr th:each="answers: ${answerList}">
+                <td th:each="answer: ${answers}" th:text="${answer}"></td>
+            </tr>
+        </table>
     </div>
-    <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
-        <p>Wrong. Try again player</p>
+    <div class="answer">
+        <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
+            <p>Great it is correct answer</p>
+            <form class="nextRound" th:action="@{/lvl-3.0}" method="GET">
+                <button class="nextRoundBtn">Go to next round</button>
+            </form>
+        </div>
+        <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
+            <p>Wrong. Try again player</p>
+            <div th:replace="fragments/level-fragments.html :: player-wrong-answer"></div>
+        </div>
     </div>
 </div>
 </body>
