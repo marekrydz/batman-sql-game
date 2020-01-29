@@ -15,6 +15,9 @@ import java.util.List;
 @Component
 public class DbRepository {
 
+    @Resource
+    HibernateUtility hibernateUtility;
+
     @Value("${spring.datasource.url}")
     String dbUrl;
     @Value("${spring.datasource.username}")
@@ -22,19 +25,30 @@ public class DbRepository {
     @Value("${spring.datasource.password}")
     String password;
 
-    @Resource
-    HibernateUtility hibernateUtility;
 
     private DbConnection dbConnection = new DbConnection();
 
     public boolean isResultOfSqlQueriesIdentical(String firstSqlQuery, String secondSqlQuery) {
-        Statement stmt = dbConnection.getConnectionToDb(dbUrl, userName, password);
-        ResultSet resultSet;
         boolean isIdentical = false;
-        try {
-            String queryToExecute = firstSqlQuery + " except " + secondSqlQuery;
-            resultSet = stmt.executeQuery(queryToExecute);
-            isIdentical = !resultSet.isBeforeFirst();
+        boolean isIdentical1;
+        boolean isIdentical2;
+
+        try (Statement stmt = dbConnection.getConnectionToDb(dbUrl, userName, password)) {
+            ResultSet resultSet1;
+            ResultSet resultSet2;
+
+            String queryToExecute = secondSqlQuery + " except " + firstSqlQuery;
+            String queryToExecute2 = firstSqlQuery + " except " + secondSqlQuery;
+
+            resultSet1 = stmt.executeQuery(queryToExecute);
+            isIdentical1 = !resultSet1.isBeforeFirst();
+
+            resultSet2 = stmt.executeQuery(queryToExecute2);
+            isIdentical2 = !resultSet2.isBeforeFirst();
+
+            if (isIdentical1 && isIdentical2) {
+                isIdentical = true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

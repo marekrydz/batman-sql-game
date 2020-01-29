@@ -23,7 +23,6 @@ public class HibernateUtility {
 
 
     public SessionFactory getSessionFactory() {
-        System.out.println(dbUrl);
         if (factory == null) {
             factory = new Configuration()
                     .addAnnotatedClass(Hero.class)
