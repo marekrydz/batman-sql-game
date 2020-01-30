@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 @Component
@@ -26,16 +24,14 @@ public class DbRepository {
     String password;
 
 
-    private DbConnection dbConnection = new DbConnection();
-
     public boolean isResultOfSqlQueriesIdentical(String firstSqlQuery, String secondSqlQuery) {
         boolean isIdentical = false;
+        ResultSet resultSet1;
+        ResultSet resultSet2;
         boolean isIdentical1;
         boolean isIdentical2;
-
-        try (Statement stmt = dbConnection.getConnectionToDb(dbUrl, userName, password)) {
-            ResultSet resultSet1;
-            ResultSet resultSet2;
+        try (Connection conn = DriverManager.getConnection(dbUrl, userName, password);
+             Statement stmt = conn.createStatement()) {
 
             String queryToExecute = secondSqlQuery + " except " + firstSqlQuery;
             String queryToExecute2 = firstSqlQuery + " except " + secondSqlQuery;
