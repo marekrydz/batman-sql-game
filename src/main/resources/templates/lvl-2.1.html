@@ -20,10 +20,7 @@
     <form class="sqlQuery" th:action="@{/lvl-2.1}" method="POST"
           th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
         <textarea style="height:70px" cols="55"
-                  rows="5" type="text" name="sqlQuery">
-            select h.name, bs.how, bs.place from heroes as h
-            join become_stories bs on h.become_story_id = bs.id where h.name= 'Batman'
-        </textarea>
+                  rows="5" type="text" name="sqlQuery"></textarea>
         <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
     </form>
 

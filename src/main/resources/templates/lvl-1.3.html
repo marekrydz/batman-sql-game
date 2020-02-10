@@ -21,9 +21,7 @@
     <form class="sqlQuery" th:action="@{/lvl-1.3}" method="POST"
           th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
         <textarea style="height:70px" cols="55"
-                  rows="5" type="text" name="sqlQuery">
-select * from heroes where name in ('Batman','Robin')
-        </textarea>
+                  rows="5" type="text" name="sqlQuery"></textarea>
         <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
     </form>
 

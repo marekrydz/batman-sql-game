@@ -19,11 +19,7 @@
     <form class="sqlQuery" th:action="@{/lvl-4.0}" method="POST"
           th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
         <textarea style="height:70px" cols="55"
-                  rows="5" type="text" name="sqlQuery">
-    select h.name, h.real_name, e.nick, e.enemy_real_name from  heroes h
-    inner join heroes_enemies  he on h.id = he.hero_id
-    inner join enemies e on e.id = he.enemy_id
-        </textarea>
+                  rows="5" type="text" name="sqlQuery"></textarea>
         <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
     </form>
 
