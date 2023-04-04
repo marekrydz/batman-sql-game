@@ -1,0 +1,5 @@
+.gradle/*
+.history/*
+bin/*
+build/*
+.vscode/*
