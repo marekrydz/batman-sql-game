@@ -4,12 +4,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @PropertySource("classpath:level-description.properties")
 @ConfigurationProperties("level")
 public class LevelDescription {
-
     private String info1x0;
     private String mission1x0;
     private String info1x1;
@@ -28,11 +26,81 @@ public class LevelDescription {
     private String mission3x0;
     private String info4x0;
     private String mission4x0;
-
-    //Tables
     private String heroTable;
     private String heroNameRealNameTable;
     private String heroNameRealNameBecomeStoriesHowPlaceTable;
+
+    public String getInfo(String level) {
+        String info = "";
+        switch (level) {
+            case "1.0":
+                info = getInfo1x0();
+                break;
+            case "1.1":
+                info = getInfo1x1();
+                break;
+            case "1.2":
+                info = getInfo1x2();
+                break;
+            case "1.3":
+                info = getInfo1x3();
+                break;
+            case "1.4":
+                info = getInfo1x4();
+                break;
+            case "2.0":
+                info = getInfo2x0();
+                break;
+            case "2.1":
+                info = getInfo2x1();
+                break;
+            case "3.0":
+                info = getInfo3x0();
+                break;
+            case "4.0":
+                info = getInfo4x0();
+                break;
+            default:
+                break;
+        }
+        return info;
+    }
+
+    public String getMission(String level) {
+        String mission = "";
+        switch (level) {
+            case "1.0":
+                mission = getMission1x0();
+                break;
+            case "1.1":
+                mission = getMission1x1();
+                break;
+            case "1.2":
+                mission = getMission1x2();
+                break;
+            case "1.3":
+                mission = getMission1x3();
+                break;
+            case "1.4":
+                mission = getMission1x4();
+                break;
+            case "2.0":
+                mission = getMission2x0();
+                break;
+            case "2.1":
+                mission = getMission2x1();
+                break;
+            case "3.0":
+                mission = getMission3x0();
+                break;
+            case "4.0":
+                mission = getMission4x0();
+                break;
+            default:
+                break;
+        }
+        return mission;
+    }
 
     public String getInfo1x0() {
         return info1x0;

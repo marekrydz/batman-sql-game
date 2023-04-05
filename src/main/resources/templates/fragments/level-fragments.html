@@ -6,15 +6,15 @@
 <body>
 
 <div th:fragment="info" class="info" th:text="${info}"
-     th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}"></div>
+     th:if="${answerStatus=='NEUTRAL' or answerStatus=='WRONG_ANSWER'}"></div>
 <div th:fragment="mission" class="mission" th:text="${mission}"
-     th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}"></div>
+     th:if="${answerStatus=='NEUTRAL' or answerStatus=='WRONG_ANSWER'}"></div>
 <div th:fragment="table-description" class="table-description" th:text="${tableDescription}"
-     th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}"></div>
+     th:if="${answerStatus=='NEUTRAL' or answerStatus=='WRONG_ANSWER'}"></div>
 <div th:fragment="player-correct-answer" class="player-answer" th:text="${'Your answer: '+playerAnswer}"
-     th:if="${answerStatus=='CorrectAnswer'}"></div>
+     th:if="${answerStatus=='CORRECT_ANSWER'}"></div>
 <div th:fragment="player-wrong-answer" class="player-answer" th:text="${'Your answer: '+playerAnswer}"
-     th:if="${answerStatus=='WrongAnswer'}"></div>
+     th:if="${answerStatus=='WRONG_ANSWER'}"></div>
 
 <table th:fragment="hero-table" class="hero-table">
     <thead>

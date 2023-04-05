@@ -21,24 +21,24 @@
 
 
     <form class="sqlQuery" th:action="@{/lvl-1.1}" method="POST"
-          th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">
+          th:if="${answerStatus=='NEUTRAL' or answerStatus=='WRONG_ANSWER'}">
         <textarea style="height:50px" cols="50" rows="5" type="text" name="sqlQuery"></textarea>
-        <button type="submit" th:if="${answerStatus=='Neutral' or answerStatus=='WrongAnswer'}">Write SQL query</button>
+        <button type="submit" th:if="${answerStatus=='NEUTRAL' or answerStatus=='WRONG_ANSWER'}">Write SQL query</button>
     </form>
 
     <div th:replace="fragments/level-fragments.html :: player-correct-answer"></div>
 
-    <div class="result" th:if="${answerStatus=='CorrectAnswer'}">
+    <div class="result" th:if="${answerStatus=='CORRECT_ANSWER'}">
         <table th:replace="fragments/level-fragments.html :: hero-table"></table>
     </div>
     <div class="answer">
-        <div class="correctAnswer" th:if="${answerStatus=='CorrectAnswer'}">
+        <div class="correctAnswer" th:if="${answerStatus=='CORRECT_ANSWER'}">
             <p>Great it is correct answer</p>
             <form class="nextRound" th:action="@{/lvl-1.2}" method="GET">
                 <button class="nextRoundBtn">Go to next round</button>
             </form>
         </div>
-        <div class="wrongAnswer" th:if="${answerStatus=='WrongAnswer'}">
+        <div class="wrongAnswer" th:if="${answerStatus=='WRONG_ANSWER'}">
             <p>Wrong. Try again player</p>
             <div th:replace="fragments/level-fragments.html :: player-wrong-answer"></div>
         </div>

@@ -1,7 +1,7 @@
 package com.mr.game.model;
 
 public enum AnswerStatusEnum {
-    CorrectAnswer(),
-    WrongAnswer(),
-    Neutral(),
+    CORRECT_ANSWER,
+    WRONG_ANSWER,
+    NEUTRAL,
 }
