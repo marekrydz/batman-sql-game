@@ -20,10 +20,6 @@ public class GameController {
 
     private final CheckService checkService;
     private final LevelDescription levelDescription;
-    private String info;
-    private String mission;
-    private String tableDescription;
-
     private final AnswerService answerService;
 
     public GameController(CheckService checkService, LevelDescription levelDescription, AnswerService answerService) {
@@ -69,9 +65,6 @@ public class GameController {
         }
         model.addAttribute("answerList", answerList);
         model.addAttribute("answerStatus", answerStatus);
-        model.addAttribute("info", info);
-        model.addAttribute("mission", mission);
-        model.addAttribute("tableDescription", tableDescription);
         model.addAttribute("playerAnswer", sqlQuery);
         return "lvl-" + level;
     }

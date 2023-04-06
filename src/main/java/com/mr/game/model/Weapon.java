@@ -19,9 +19,6 @@ public class Weapon {
     @JoinColumn(name = "hero_id")
     Hero hero;
 
-    public Weapon() {
-    }
-
     public Long getId() {
         return id;
     }

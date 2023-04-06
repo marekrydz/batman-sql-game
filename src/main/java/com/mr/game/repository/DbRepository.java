@@ -6,23 +6,25 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.sql.*;
 import java.util.List;
 
 @Component
 public class DbRepository {
 
-    @Resource
     HibernateUtility hibernateUtility;
+    private final String dbUrl;
+    private final String userName;
+    private final String password;
 
-    @Value("${spring.datasource.url}")
-    String dbUrl;
-    @Value("${spring.datasource.username}")
-    String userName;
-    @Value("${spring.datasource.password}")
-    String password;
-
+    public DbRepository(HibernateUtility hibernateUtility, @Value("${spring.datasource.url}") String dbUrl,
+                        @Value("${spring.datasource.username}") String userName,
+                        @Value("${spring.datasource.password}") String password) {
+        this.hibernateUtility = hibernateUtility;
+        this.dbUrl = dbUrl;
+        this.userName = userName;
+        this.password = password;
+    }
 
     public boolean isResultOfSqlQueriesIdentical(String firstSqlQuery, String secondSqlQuery) {
         boolean isIdentical = false;
@@ -51,10 +53,12 @@ public class DbRepository {
         return isIdentical;
     }
 
-    public List<Object> getObjectsListUsingHqlQuery(String hqlQuery){
+    public List<Object> getObjectsListUsingHqlQuery(String hqlQuery) {
         SessionFactory sessionFactory = hibernateUtility.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Query qry= session.createQuery(hqlQuery);
-        return qry.list();
+        Query qry;
+        try (Session session = sessionFactory.openSession()) {
+            qry = session.createQuery(hqlQuery);
+            return qry.list();
+        }
     }
 }

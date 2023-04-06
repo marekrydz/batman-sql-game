@@ -28,9 +28,6 @@ public class Hero {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "heroes")
     private Set<Enemy> enemies = new HashSet<>();
 
-    public Hero() {
-    }
-
     public Long getId() {
         return id;
     }

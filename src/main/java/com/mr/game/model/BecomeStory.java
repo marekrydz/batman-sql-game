@@ -18,10 +18,6 @@ public class BecomeStory {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "becomeStory")
     private Hero hero;
 
-
-    public BecomeStory() {
-    }
-
     public Long getId() {
         return id;
     }

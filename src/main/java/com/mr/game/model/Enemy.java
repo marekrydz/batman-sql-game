@@ -24,9 +24,6 @@ public class Enemy {
     )
     Set<Hero> heroes = new HashSet<>();
 
-    public Enemy() {
-    }
-
     public Long getId() {
         return id;
     }

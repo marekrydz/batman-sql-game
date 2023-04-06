@@ -20,10 +20,6 @@ public class Answer {
     @Column(name = "answer_hql")
     private String answerHql;
 
-    public Answer() {
-
-    }
-
     public Long getId() {
         return id;
     }

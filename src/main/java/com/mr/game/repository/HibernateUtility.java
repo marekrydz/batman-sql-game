@@ -9,10 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HibernateUtility {
 
-    private static SessionFactory factory;
-
-    private HibernateUtility() {
-    }
+    private SessionFactory factory;
 
     @Value("${spring.datasource.url}")
     String dbUrl;
@@ -22,7 +19,7 @@ public class HibernateUtility {
     String password;
 
 
-    public SessionFactory getSessionFactory() {
+    public  SessionFactory getSessionFactory() {
         if (factory == null) {
             factory = new Configuration()
                     .addAnnotatedClass(Hero.class)
@@ -41,8 +38,4 @@ public class HibernateUtility {
         return factory;
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return new RuntimeException("Clone not Supported");
-    }
 }

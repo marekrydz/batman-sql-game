@@ -5,17 +5,18 @@ import com.mr.game.repository.AnswerRepository;
 import com.mr.game.repository.DbRepository;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class AnswerService {
 
-    @Resource
-    private AnswerRepository answerRepository;
+    private final AnswerRepository answerRepository;
+    private final DbRepository dbRepository;
 
-    @Resource
-    DbRepository dbRepository;
+    public AnswerService(AnswerRepository answerRepository, DbRepository dbRepository) {
+        this.answerRepository = answerRepository;
+        this.dbRepository = dbRepository;
+    }
 
     public String getSqlAnswerByGameLvl(String gameLvl) {
         return answerRepository.getAnswerByGameLvl(gameLvl).getAnswerSql();
@@ -23,8 +24,7 @@ public class AnswerService {
 
     public List<Object> getCorrectAnswer(String gameLvl) {
         String hqlQuery = answerRepository.getHqlQueryByGameLvl(gameLvl);
-        List<Object> result = dbRepository.getObjectsListUsingHqlQuery(hqlQuery);
-        return result;
+        return dbRepository.getObjectsListUsingHqlQuery(hqlQuery);
     }
 }
 
